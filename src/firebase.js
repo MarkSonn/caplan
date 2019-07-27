@@ -3,7 +3,7 @@ import 'firebase/firestore'
 // import 'firebase/storage'
 import 'firebase/auth'
 
-// import { GeoCollectionReference, GeoFirestore, GeoQuery, GeoQuerySnapshot } from 'geofirestore'
+import { GeoCollectionReference, GeoFirestore, GeoQuery, GeoQuerySnapshot } from 'geofirestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCIscCuEQmN0ezq7WNU4d9yHeToBxiQNl8',
@@ -20,7 +20,15 @@ export const firebaseCore = fb
 export const firebase = fb.initializeApp(firebaseConfig)
 export const firestore = firebase.firestore()
 // export const storage = firebase.storage()
+// export const auth = firebase.auth()
+const geofirestore = new GeoFirestore(firestore)
+const donationLocations = geofirestore.collection('donations')
+// export const query = donationLocations.near({ center: new firebase.firestore.GeoPoint(151.79, -33.9851), radius: 2000 })
 export const auth = firebase.auth()
+export const getDonations = async () => {
+  const snapshot = await firestore.collection('donations').get()
+  return snapshot.docs.map(doc => doc.data())
+}
 // const geofirestore = new GeoFirestore(firestore)
 // export const donationLocations = geofirestore.collection('donations')
 // export const query: GeoQuery = geocollection.near({ center: new firebase.firestore.GeoPoint(40.7589, -73.9851), radius: 1000 });
@@ -31,11 +39,11 @@ export const auth = firebase.auth()
 export const submitDonation = async (donation) => firestore.collection('donations').add(donation)
 export const submitEnquiry = async (enquiry) => firestore.collection('enquiry').add(enquiry)
 // export const getDonation = async (donation) => firestore.collection('donations').add(donation)
-export const getDonations = async () => {
+// export const getDonation = async (donation) => firestore.collection('donations').add(donation)
+/* export const getDonations = async () => {
   const snapshot = await firestore.collection('donations').get()
   return snapshot.docs.map(doc => doc.data())
-}
-
+} */
 /** * Example usage: ***/
 // First add this to the imports:
 // import { submitDonation } from '@/firebase'

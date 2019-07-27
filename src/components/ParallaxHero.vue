@@ -1,49 +1,49 @@
 <template>
   <div v-scroll="rotateArm">
     <v-parallax
-        dark
-        style="height: 1200px"
-        src="heroback.jpg">
-        <v-layout
-          align-center
-          column
-          justify-center
-          style="margin-top: 200px; margin-bottom: 200px;"
-          >
-          <h1 class="display-4 font-weight-thin mb-4">Yeats</h1>
-          <h4 class="display-1 font-weight-thin">What you don't need, you Yeat.</h4>
-        </v-layout>
-        <v-layout>
-          <v-flex xs6 pa-5 font-weight-light>
-            <h2 class="display-2 my-5 font-weight-light">Just Yeat it!</h2>
-            <p>
-              Leftovers from last night's family dinner? Clothes in your wardrobe you never wear? Old toys just lying and collecting dust? Why chuck 'em when you could Yeat 'em? Yeats makes donating food, clothes and toys simple and convenient. Your donations will go to homeless shelters, charity op-shops and other people who can benefit most from your stuff. Just let us know, and one of our awesome volunteers will come to you and pick them up!
-            </p>
-          </v-flex>
-          <v-flex xs6>
-            <div id="yeater" style="position: relative" width="400px">
-              <img id="yeatbod" src="yeater_bod.svg" width="400px"/>
-              <img id="yeatarm"
-                src="yeater_arm.svg"
-                width="256px"
-                style="transform: rotate(40deg)"/>
-              <img class="yeatfood" id="yeatfood3"
-                src="yeater_food_3.svg"
-                width="256px"
-                style="transform: rotate(40deg)"/>
-              <img class="yeatfood" id="yeatfood2"
-                src="yeater_food_2.svg"
-                width="256px"
-                style="transform: rotate(40deg)"/>
-              <img class="yeatfood" id="yeatfood1"
-                src="yeater_food_1.svg"
-                width="256px"
-                style="transform: rotate(40deg)"/>
-            </div>
-          </v-flex>
-        </v-layout>
-        <v-layout align-center justify-center>
-          <!-- <v-dialog
+      dark
+      style="height: 1200px"
+      src="heroback.jpg">
+      <v-layout
+        align-center
+        column
+        justify-center
+        style="margin-top: 200px; margin-bottom: 200px;"
+      >
+        <h1 class="display-4 font-weight-thin mb-4">Yeats</h1>
+        <h4 class="display-1 font-weight-thin">What you don't need, you Yeat.</h4>
+      </v-layout>
+      <v-layout>
+        <v-flex xs6 pa-5 font-weight-light>
+          <h2 class="display-2 my-5 font-weight-light">Just Yeat it!</h2>
+          <p>
+            Leftovers from last night's family dinner? Clothes in your wardrobe you never wear? Old toys just lying and collecting dust? Why chuck 'em when you could Yeat 'em? Yeats makes donating food, clothes and toys simple and convenient. Your donations will go to homeless shelters, charity op-shops and other people who can benefit most from your stuff. Just let us know, and one of our awesome volunteers will come to you and pick them up!
+          </p>
+        </v-flex>
+        <v-flex xs6>
+          <div id="yeater" style="position: relative" width="400px">
+            <img id="yeatbod" src="yeater_bod.svg" width="400px">
+            <img id="yeatarm"
+                 src="yeater_arm.svg"
+                 width="256px"
+                 style="transform: rotate(40deg)">
+            <img id="yeatfood3" class="yeatfood"
+                 src="yeater_food_3.svg"
+                 width="256px"
+                 style="transform: rotate(40deg)">
+            <img id="yeatfood2" class="yeatfood"
+                 src="yeater_food_2.svg"
+                 width="256px"
+                 style="transform: rotate(40deg)">
+            <img id="yeatfood1" class="yeatfood"
+                 src="yeater_food_1.svg"
+                 width="256px"
+                 style="transform: rotate(40deg)">
+          </div>
+        </v-flex>
+      </v-layout>
+      <v-layout align-center justify-center>
+        <!-- <v-dialog
             v-model="ticketModalState"
             width="500">
             <template v-slot:activator="{ on }">
@@ -51,29 +51,29 @@
             </template>
             <v-card>THICC MEMES</v-card>
           </v-dialog> -->
-          <p class="display-1">Contact Us</p>
-        </v-layout>
-      </v-parallax>
-
-      <v-layout dark align-center justify-center style="background: #000; padding-bottom: 100px; padding-top: 60px">
-  <form style="width: 60%; margin: auto;">
-    <v-text-field dark
-      v-model="enquiry.name"
-      label="Name"
-      required />
-    <v-text-field dark
-      v-model="enquiry.email"
-      label="E-mail"
-      required />
-    <v-textarea dark
-      v-model="enquiry.message"
-      name="contactMessage"
-      label="Message"
-      required />
-
-    <v-btn dark @click="onSubmit" class="mr-4">submit</v-btn>
-  </form>
+        <p class="display-1">Contact Us</p>
       </v-layout>
+    </v-parallax>
+
+    <v-layout dark align-center justify-center style="background: #000; padding-bottom: 100px; padding-top: 60px">
+      <form style="width: 60%; margin: auto;">
+        <v-text-field v-model="enquiry.name"
+                      dark
+                      label="Name"
+                      required />
+        <v-text-field v-model="enquiry.email"
+                      dark
+                      label="E-mail"
+                      required />
+        <v-textarea v-model="enquiry.message"
+                    dark
+                    name="contactMessage"
+                    label="Message"
+                    required />
+
+        <v-btn @click="onSubmit" dark class="mr-4">submit</v-btn>
+      </form>
+    </v-layout>
   </div>
 </template>
 

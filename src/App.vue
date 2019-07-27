@@ -4,6 +4,7 @@
 
     <v-content>
       <router-view />
+      <!-- <MapPage /> -->
       <!-- <ShitsFucked /> -->
       <!-- TestComponent -->
     </v-content>
