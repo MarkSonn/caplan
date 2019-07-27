@@ -14,9 +14,14 @@ export default new Router({
       component: pages.LandingPage
     },
     {
-      path: '/shitsfucked',
-      name: 'ShitsFucked',
-      component: pages.ShitsFucked
+      path: '/yeaters',
+      name: 'YeatersPage',
+      component: pages.YeatersPage
+    },
+    {
+      path: '/yoters',
+      name: 'YotersPage',
+      component: pages.YotersPage
     }
   ]
 })
