@@ -19,6 +19,26 @@
 
       <v-card-text>
         <form>
+          
+
+          <div>
+            <h2 class="subheader">What is your address?</h2>
+              <gmap-autocomplete
+                @place_changed="setPlace">
+              </gmap-autocomplete>
+            <br/>
+          </div>
+
+          <h2 class="subheader">What is your name?</h2>
+          <v-text-field
+            v-model="name"
+          ></v-text-field>
+
+          <h2 class="subheader">What is your phone number?</h2>
+          <v-text-field
+            v-model="phone"
+          ></v-text-field>
+          
           <h2 v-if="donationType === null" class="subheader">What would you like to donate?</h2>
           <v-select
             v-if="donationType === null"
@@ -84,6 +104,12 @@ import { submitDonation } from '@/firebase'
 export default {
   name: 'TicketModal',
   data: () => ({
+    center: { lat: 45.508, lng: -73.587 },
+    markers: [],
+    name: null,
+    phone: null,
+    places: [],
+    currentPlace: null,
     donationType: null,
     donationTypes: ["Food", "Clothing"],
     picker: null,
@@ -94,13 +120,32 @@ export default {
     foodTypes: ['Meat', 'Fish', 'Chilled Products', 'Bakery', 'Fruit / Veg', 'Dry Stock', 'Other'],
     clothingTypes: ["Coats", "Jackets", "Trousers", "Jeans", "Suits", "Skirts", "T-shirts", "Sweater"]
   }),
+  computed: {
+    isRefrigerated() {
+      return false;
+    }
+  },
   methods: {
     onSubmit: async function() {
       try {
         const response = await submitDonation({
-          donationTypes: this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr]), 
+          type: this.donationType,
+          items: this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr]), 
           pickupTime: this.picker,
-          foodAmount: this.amountSelect 
+          refrigerated: this.isRefrigerated,
+          status: "awaiting",
+          totalWeight: this.amountSelect,
+          chef: {
+            name: this.name,
+            phone: this.phone,
+            address: {
+              lat: this.currentPlace.geometry.location.lat(),
+              lng: this.currentPlace.geometry.location.lng()
+            }
+          },
+          driver: {
+
+          }
         })
         console.log('Doc:', response)
         window.location.reload()
@@ -108,7 +153,25 @@ export default {
         console.log(error)
         console.log('ERROR is submitDonation')
       }
-    }
+    },
+    setPlace(place) {
+      this.currentPlace = place;
+    },
+    addMarker() {
+      if (this.currentPlace) {
+        const marker = {
+          lat: this.currentPlace.geometry.location.lat(),
+          lng: this.currentPlace.geometry.location.lng()
+        };
+        this.markers.push({ position: marker });
+        this.places.push(this.currentPlace);
+        this.center = {
+          lat: this.currentPlace.geometry.location.lat(),
+          lng: this.currentPlace.geometry.location.lng()
+        };
+        this.currentPlace = null;
+      }
+    },
   }
 }
 </script>
