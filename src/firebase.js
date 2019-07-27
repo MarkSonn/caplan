@@ -27,7 +27,10 @@ const donationLocations = geofirestore.collection('donations')
 export const auth = firebase.auth()
 export const getDonations = async () => {
   const snapshot = await firestore.collection('donations').get()
-  return snapshot.docs.map(doc => doc.data())
+  return snapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
+}
+export const deleteDonation = async (id) => {
+  firestore.collection('donations').doc(id).delete()
 }
 // const geofirestore = new GeoFirestore(firestore)
 // export const donationLocations = geofirestore.collection('donations')

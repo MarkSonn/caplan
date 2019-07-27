@@ -8,6 +8,7 @@
 <script>
 // import { query } from '../firebase.js'
 import { getDonations } from '../firebase.js'
+import { deleteDonation } from "../firebase.js"
 let google = window.google
 export default {
   name: 'Map',
@@ -110,16 +111,16 @@ export default {
             break
         }
         let refrigerated = obj.refrigerated ? 'Chilled' : ''
-        var content = '' + obj.chef.name + ': ' + refrigerated + ' ' + obj.type + ' (' + obj.totalWeight + ')<br>Preferred Pickup: ' + obj.pickupTime
+        var content = '' + obj.chef.name + ': ' + refrigerated + ' ' + obj.type + ' (' + obj.totalWeight + ')<br>Preferred Pickup: ' + obj.pickupTime + `<br/><button onclick="console.log('${obj.id}')">Confirm pickup</button>`
         var infowindow = new google.maps.InfoWindow()
         let map = this.map
-        google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+        google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow, id) {
           map.setCenter(marker.getPosition())
           return function() {
             infowindow.setContent(content)
             infowindow.open(map, marker)
           }
-        })(marker, content, infowindow))
+        })(marker, content, infowindow, obj.id))
         this.markers.push(marker)
         marker.setMap(this.map)
         this.map.fitBounds(this.bounds.extend(position))
