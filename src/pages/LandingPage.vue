@@ -1,7 +1,7 @@
 <template>
   <div>
     <ParallaxHero />
-    <ContactForm />
+    <!-- <ContactForm /> -->
   </div>
 </template>
 
