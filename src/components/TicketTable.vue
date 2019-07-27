@@ -4,7 +4,7 @@
       <v-flex xs12 md10 offset-md1>
 
 
-        <h2>Your past donation history</h2>
+        <!-- <h2>Your past donation history</h2>
         <v-simple-table>
           <thead>
             <tr>
@@ -49,8 +49,26 @@
               </td>
             </tr>
           </tbody>
-        </v-simple-table>
-
+        </v-simple-table> -->
+        <v-card>
+          <v-card-title>
+            Yeat history
+            <v-spacer></v-spacer>
+            <v-text-field
+              v-model="search"
+              append-icon="search"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
+          </v-card-title>
+          <v-data-table
+            v-if="this.history !== null"
+            :headers="headers"
+            :items="transformedHistory"
+            :search="search"
+          ></v-data-table>
+        </v-card>
 
       </v-flex>
     </v-layout>
@@ -64,8 +82,35 @@ export default {
   name: 'TicketTable',
   data: () => ({
     keys: ['type', 'items', 'pickupTime', 'totalWeight', 'chef', 'driver', 'refrigerated', 'status'],
-    history: null
+    history: null,
+    search: '',
+    headers: [
+      {
+        text: 'Type',
+        align: 'left',
+        sortable: true,
+        value: 'type',
+      },
+      { text: 'Items', value: 'items', sortable: false },
+      { text: 'Pick-up time', value: 'pickupTime', sortable: true },
+      { text: 'Total weight', value: 'totalWeight', sortable: true },
+      { text: 'Chef', value: 'chef.name', sortable: true },
+      { text: 'Refrigerated', value: 'refrigerated', sortable: true },
+      { text: 'Status', value: 'status', sortable: true }
+    ],
   }),
+  computed: {
+    transformedHistory() {
+      const history = [...this.history]
+
+      for (let h of history) {
+        h.items = h.items.join(', ')
+        h.refrigerated = h.refrigerated ? 'Yes' : 'No'
+        h.status = h.status === 'awaiting' ? 'Awaiting' : 'Completed'
+      }
+      return history
+    }
+  },
   beforeMount() {
     getDonations().then(res => {
       this.history = res.filter((curr, i) => {
