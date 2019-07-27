@@ -29,6 +29,7 @@ export const firestore = firebase.firestore()
 
 // Database functions
 export const submitDonation = async (donation) => firestore.collection('donations').add(donation)
+export const getDonations = async () => firestore.collection('donations').get()
 // export const getDonation = async (donation) => firestore.collection('donations').add(donation)
 
 /** * Example usage: ***/
