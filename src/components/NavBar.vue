@@ -1,11 +1,11 @@
 <template>
   <v-app-bar
-    color="deep-purple accent-4" dark app>
-    <v-toolbar-title>Page title</v-toolbar-title>
+    color="#c22300" dark app>
+    <v-toolbar-title>Yeats</v-toolbar-title>
 
     <v-spacer />
 
-    <v-btn icon><v-icon>mdi-heart</v-icon></v-btn>
+    <!-- <v-btn icon><v-icon>mdi-heart</v-icon></v-btn>
     <v-btn icon><v-icon>mdi-magnify</v-icon></v-btn>
 
     <v-menu
@@ -25,7 +25,7 @@
           <v-list-item-title>Option {{ n }}</v-list-item-title>
         </v-list-item>
       </v-list>
-    </v-menu>
+    </v-menu> -->
   </v-app-bar>
 </template>
 
