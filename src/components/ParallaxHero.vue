@@ -26,28 +26,58 @@
                 src="yeater_arm.svg"
                 width="256px"
                 style="transform: rotate(40deg)"/>
-              <img id="yeatfood"
-                src="yeater_food.svg"
+              <img class="yeatfood" id="yeatfood3"
+                src="yeater_food_3.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
+              <img class="yeatfood" id="yeatfood2"
+                src="yeater_food_2.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
+              <img class="yeatfood" id="yeatfood1"
+                src="yeater_food_1.svg"
                 width="256px"
                 style="transform: rotate(40deg)"/>
             </div>
           </v-flex>
         </v-layout>
         <v-layout align-center justify-center>
-          <v-dialog
+          <!-- <v-dialog
             v-model="ticketModalState"
             width="500">
             <template v-slot:activator="{ on }">
                   <v-btn v-on="on" text dark>Contact</v-btn>
             </template>
             <v-card>THICC MEMES</v-card>
-          </v-dialog>
+          </v-dialog> -->
+          <p class="display-1">Contact Us</p>
         </v-layout>
       </v-parallax>
+
+      <v-layout dark align-center justify-center style="background: #000; padding-bottom: 100px; padding-top: 60px">
+  <form style="width: 60%; margin: auto;">
+    <v-text-field dark
+      v-model="name"
+      label="Name"
+      required />
+    <v-text-field dark
+      v-model="email"
+      label="E-mail"
+      required />
+    <v-textarea dark
+      v-model="message"
+      name="contactMessage"
+      label="Message"
+      required />
+
+    <v-btn dark @click="onSubmit" class="mr-4">submit</v-btn>
+  </form>
+      </v-layout>
   </div>
 </template>
 
 <script>
+import * as components from '@/components'
 export default {
   name: 'ParallaxHero',
   data: () => ({
@@ -81,7 +111,17 @@ export default {
         ty = 0
         angle = mapval(pageY, 400, 750, -50, -80)
       }
-      var food = document.getElementById('yeatfood')
+      var food = document.getElementById('yeatfood1')
+      food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
+      if (pageY > 400) {
+        angle = mapval(pageY, 400, 750, -50, -40)
+      }
+      var food = document.getElementById('yeatfood2')
+      food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
+      if (pageY > 400) {
+        angle = mapval(pageY, 400, 750, -50, -0)
+      }
+      var food = document.getElementById('yeatfood3')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
     }
   }
@@ -100,7 +140,7 @@ export default {
     top: 0;
     left: 80px;
   }
-  #yeatfood {
+  .yeatfood {
     position: absolute;
     top: 0;
     left: 80px;
