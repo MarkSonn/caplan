@@ -7,7 +7,7 @@
         v-on="on"
         color="red lighten-2"
         dark>
-        Click Me
+        Make a donation
       </v-btn>
     </template>
 
@@ -60,7 +60,7 @@ export default {
     ticketModalState: false,
     selected: [],
     amountSelect: null,
-    items: ['0-10kgs', '10-20kgs', '20-50kgs', '50-100kgs', '100kgs+'],
+    items: ['0-5kgs', '5-10kgs', '10-20kgs', '20-30kgs', '30kgs+'],
     foodTypes: ['Meat', 'Fish', 'Chilled Products', 'Bakery', 'Fruit / Veg', 'Dry Stock', 'Other']
   }),
   methods: {

@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <TicketModal />
+    <TicketTable />
   </div>
 </template>
 
