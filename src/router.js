@@ -19,9 +19,9 @@ export default new Router({
       component: pages.YeatersPage
     },
     {
-      path: '/yeatees',
-      name: 'YeateesPage',
-      component: pages.YeateesPage
+      path: '/yoters',
+      name: 'YotersPage',
+      component: pages.YotersPage
     }
   ]
 })

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p>fml :((((((</p>
     <!-- <MapStuffHere /> -->
     <!-- <ContactForm /> -->
   </div>
@@ -9,7 +10,7 @@
 import * as components from '@/components'
 
 export default {
-  name: 'YeateesPage',
+  name: 'YotersPage',
   components: { ...components }
 }
 </script>
