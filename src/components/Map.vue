@@ -1,68 +1,57 @@
 <template>
     <div class="app">
         <div ref="map" style="width: 100%; height: 600px;"></div>
+        <div class="google-map" :id="mapName"></div>
     </div>
 </template>
 
 <script>
-var H = window.H
-let lng = 0
-let lat = 0
-let obj = 0
-let inst = 0
-
 export default {
-  name: 'Map',
+  name: 'google-map',
+  props: ['name'],
   data: function () {
     return {
-      platform: {},
-      map: {}
+      mapName: this.name + "-map",
+      markerCoordinates: [{
+        latitude: 51.501527,
+        longitude: -0.1921837
+      }, {
+        latitude: 51.505874,
+        longitude: -0.1838486
+      }, {
+        latitude: 51.4998973,
+        longitude: -0.202432
+      }],
+      map: null,
+      bounds: null,
+      markers: []
     }
   },
   mounted: function () {
-    this.platform = new H.service.Platform({
-      'apikey': 'nHMiL5tvhEf51aXUBVbHozLuFcb5vZritl7W4bdaQ58'
-    })
-
-    // Obtain the default map types from the platform object
-    var layers = this.platform.createDefaultLayers()
-
-    obj = this.$refs.map
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (callback) {
-        lat = callback.coords.latitude
-        lng = callback.coords.longitude
-        console.log(lat, lng)
-        obj.innerHTML = ''
-        inst = new H.Map(
-          obj,
-          layers.vector.normal.map,
-          {
-            zoom: Math.floor(callback.coords.accuracy / 5),
-            center: { lng: lng, lat: lat }
-          })
-      })
-    } else {
-      alert('Unable to obtain user location (Geolocation not supported)')
+    this.bounds = new google.maps.LatLngBounds();
+    const element = document.getElementById(this.mapName)
+    const mapCentre = this.markerCoordinates[0]
+    const options = {
+      center: new google.maps.LatLng(mapCentre.latitude, mapCentre.longitude)
     }
-
-    // Instantiate (and display) a map object:
-    if (lat == 0) {
-      inst = new H.Map(
-        this.$refs.map,
-        layers.vector.normal.map,
-        {
-          zoom: 10,
-          center: { lng: lng, lat: lat }
-        })
-    }
-
-    // window.addEventListener('resize', () => this.$refs.map.getViewPort().resize())
-    var mapEvents = new H.mapevents.MapEvents(this.inst)
-    var behavior = new H.mapevents.Behavior(mapEvents)
-    var ui = H.ui.UI.createDefault(inst, layers)
+    this.map = new google.maps.Map(element, options);
+    this.markerCoordinates.forEach((coord) => {
+      const position = new google.maps.LatLng(coord.latitude, coord.longitude);
+      const marker = new google.maps.Marker({ 
+        position,
+        map: this.map
+      });
+    this.markers.push(marker)
+      this.map.fitBounds(this.bounds.extend(position))
+    });
   }
-}
-
+};
 </script>
+<style scoped>
+.google-map {
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  background: gray;
+}
+</style>
