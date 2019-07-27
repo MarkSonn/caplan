@@ -34,39 +34,22 @@ import { getDonations } from '@/firebase'
 export default {
   name: 'TicketTable',
   data: () => ({
-    keys: ["id", "foodTypes", "pickupTime", "foodAmount"],
-    // history: getDonations().filter(curr => {
-    //   for (let k of keys) {
-    //     if (!this.keys.includes(k)) 
-    //       return false
-    //   }
-    //   return true
-    // })
-    // history: getDonations().filter(curr => {
-    //   console.log(curr)
-    //   return false
-    // })
-    // history: [
-    //   {
-    //     id: 0,
-    //     foodTypes: ["Meat", "Fish"],
-    //     pickupTime: "1:30",
-    //     foodAmount: "0-10kg"
-    //   },
-    //   {
-    //     id: 1,
-    //     foodTypes: ["Bakery", "Chilled Products"],
-    //     pickupTime: "14:00",
-    //     foodAmount: "0-10kg"
-    //   },
-    //   {
-    //     id: 2,
-    //     foodTypes: ["Fruit / Veg", "Dry Stock"],
-    //     pickupTime: "15:45",
-    //     foodAmount: "10-20kg"
-    //   }
-    // ]
-  })
+    keys: ["foodTypes", "pickupTime", "foodAmount"],
+    history: null
+  }),
+  beforeMount() {
+    const donationHistory = getDonations().then(res => {
+      this.history = res.filter((curr, i) => {
+        for (let k of this.keys) {
+          if (!curr.hasOwnProperty(k)) {
+            return false
+          }
+          curr = {...curr, id: i}
+        }
+        return true
+      })      
+    })
+  }
 }
 </script>
 <style scoped>
