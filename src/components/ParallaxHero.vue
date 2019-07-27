@@ -50,12 +50,9 @@
             </div>
           </v-flex>
         </v-layout>
-        <v-layout align-center justify-center>
-          <p class="display-1">Contact Us</p>
-        </v-layout>
       </v-parallax>
-
-    <v-layout dark align-center justify-center style="background: #000; padding-bottom: 100px; padding-top: 60px">
+    <v-layout dark align-center column justify-center style="background: #000; padding-bottom: 100px; padding-top: 60px">
+          <p class="display-1" style="color: white">Contact Us</p>
       <form style="width: 60%; margin: auto;">
         <v-text-field v-model="enquiry.name"
                       dark
@@ -96,7 +93,6 @@ export default {
         return dstlow + f * (dsthi - dstlow)
       }
       var pageY = window.scrollY
-      console.log(pageY)
       var arm = document.getElementById('yeatarm')
       // var angle = (300 *0.5) - pageY * 0.5
       // map [220,400] to [40,-50]
