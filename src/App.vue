@@ -4,16 +4,17 @@
     <NavBar />
 
     <v-content>
-      <HelloWorld/>
+      <LandingPage />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import * as components from '@/components/' // @ means from the src directory
+import * as pages from '@/pages' // @ means from the src directory
+import * as components from '@/components' // @ means from the src directory
 
 export default {
   name: 'App',
-  components: { ...components }
+  components: { ...pages, ...components }
 }
 </script>

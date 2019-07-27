@@ -1,7 +1,6 @@
 <template>
   <v-app-bar
-    color="deep-purple accent-4"
-    dark>
+    color="deep-purple accent-4" dark app>
     <v-toolbar-title>Page title</v-toolbar-title>
 
     <v-spacer></v-spacer>
