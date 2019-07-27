@@ -58,15 +58,15 @@
       <v-layout dark align-center justify-center style="background: #000; padding-bottom: 100px; padding-top: 60px">
   <form style="width: 60%; margin: auto;">
     <v-text-field dark
-      v-model="name"
+      v-model="enquiry.name"
       label="Name"
       required />
     <v-text-field dark
-      v-model="email"
+      v-model="enquiry.email"
       label="E-mail"
       required />
     <v-textarea dark
-      v-model="message"
+      v-model="enquiry.message"
       name="contactMessage"
       label="Message"
       required />
@@ -82,6 +82,7 @@ import * as components from '@/components'
 export default {
   name: 'ParallaxHero',
   data: () => ({
+    enquiry: {}
   }),
   computed: {
   },
@@ -124,6 +125,15 @@ export default {
       }
       var food = document.getElementById('yeatfood3')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
+    },
+    async onSubmit() {
+      try {
+        const response = await submitEnquiry(this.enquiry)
+        console.log('Enquiry response', response)
+        this.enquiry = {}
+      } catch (error) {
+        console.log('Enquiry error', error)
+      }
     }
   }
 }
