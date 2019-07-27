@@ -26,21 +26,21 @@
 export default {
   name: 'ContactForm',
   data: () => ({
-    email: "",
-    message: "",
-    name: ""
+    email: '',
+    message: '',
+    name: ''
   }),
   methods: {
-    onNameInput: function(e) {
+    onNameInput: function (e) {
       this.name = e
     },
-    onEmailInput: function(e) {
+    onEmailInput: function (e) {
       this.email = e
     },
-    onMessageInput: function(e) {
+    onMessageInput: function (e) {
       this.message = e
     },
-    onSubmit: function() {
+    onSubmit: function () {
       console.log(this.name, this.email, this.message)
     }
   }
