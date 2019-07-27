@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div>
     <TicketTable />
     <TicketModal />
   </div>
@@ -9,7 +9,7 @@
 import * as components from '@/components'
 
 export default {
-  name: 'ShitsFucked',
+  name: 'YeatersPage',
   components: { ...components }
 }
 </script>

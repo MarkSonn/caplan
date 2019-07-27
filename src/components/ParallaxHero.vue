@@ -11,13 +11,14 @@
           style="margin-top: 200px; margin-bottom: 200px;"
           >
           <h1 class="display-4 font-weight-thin mb-4">Yeats</h1>
-          <h4 class="display-1 font-weight-thin">What you don't eat, you Yeat.</h4>
+          <h4 class="display-1 font-weight-thin">What you don't need, you Yeat.</h4>
         </v-layout>
         <v-layout>
           <v-flex xs6 pa-5 font-weight-light>
             <h2 class="display-2 my-5 font-weight-light">Just Yeat it!</h2>
-            <p>Ever felt bad for throwing out food? Why chuck it when you could Yeat it? Yeat connects you with local homeless shelters, and we make sure your excess food does not go to waste. Just let us know whenever you have excess food, and one of our awesome Yeaters will come pick it up for you!</p>
-            <p>Interested in helping out? Become a Yeater today!</p>
+            <p>
+              Leftovers from last night's family dinner? Clothes in your wardrobe you never wear? Old toys just lying and collecting dust? Why chuck 'em when you could Yeat 'em? Yeats makes donating food, clothes and toys simple and convenient. Your donations will go to homeless shelters, charity op-shops and other people who can benefit most from your stuff. Just let us know, and one of our awesome volunteers will come to you and pick them up!
+            </p>
           </v-flex>
           <v-flex xs6>
             <div id="yeater" style="position: relative" width="400px">
@@ -169,12 +170,12 @@ export default {
       // var angle = (300 *0.5) - pageY * 0.5
       // map [220,400] to [40,-50]
       // rotation range: 40 to -50
-      //if (angle < -50) angle = -50;
-      //if (angle > 40) angle = 40;
+      // if (angle < -50) angle = -50;
+      // if (angle > 40) angle = 40;
       var angle = mapval(pageY, 0, 400, 40, -50)
       var tx = mapval(pageY, 0, 400, 150, 0)
       var ty = mapval(pageY, 0, 400, 50, 0)
-      arm.style = "transform: translate("+tx+"px, "+ty+"px) rotate(" + angle + "deg)"
+      arm.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
       var body = document.getElementById('yeatbod')
       body.style = 'transform: translate(' + tx + 'px, ' + ty + 'px)'
       if (pageY > 400) {

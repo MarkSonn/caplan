@@ -47,7 +47,6 @@ export default {
         this.enquiry = {}
       } catch (error) {
         console.log('Enquiry error', error)
-        return
       }
     }
   }
