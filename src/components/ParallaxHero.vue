@@ -11,7 +11,7 @@
           style="margin-top: 200px; margin-bottom: 200px;"
           >
           <h1 class="display-4 font-weight-thin mb-4">Yeats</h1>
-          <h4 class="display-1 font-weight-light">What you don't eat, you Yeat!</h4>
+          <h4 class="display-1 font-weight-thin">What you don't eat, you Yeat.</h4>
         </v-layout>
         <v-layout>
           <v-flex xs6 pa-5 font-weight-light>
