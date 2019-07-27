@@ -16,7 +16,7 @@ export default new Router({
     {
       path: '/map',
       name: 'MapPage',
-      component: pages.Map
+      component: pages.MapPage
     },
     {
       path: '/shitsfucked',

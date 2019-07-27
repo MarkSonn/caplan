@@ -21,10 +21,9 @@ export const firebase = fb.initializeApp(firebaseConfig)
 export const firestore = firebase.firestore()
 // export const storage = firebase.storage()
 // export const auth = firebase.auth()
-    /*const geofirestore = new GeoFirestore(firestore)
+const geofirestore = new GeoFirestore(firestore)
 const donationLocations = geofirestore.collection('donations')
-export const query = donationLocations.near({ center: new firebase.firestore.GeoPoint(151.79, -33.9851), radius: 1000 })
-*/
+// export const query = donationLocations.near({ center: new firebase.firestore.GeoPoint(151.79, -33.9851), radius: 2000 })
 // Storage refs
 // export const blah = firebase.storage().ref().child('blah')
 

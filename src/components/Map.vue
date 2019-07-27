@@ -1,35 +1,41 @@
 <template>
   <!-- <div class="app"> -->
-    <!-- <div ref="map" /> -->
+  <!-- <div ref="map" /> -->
   <div id="mainMap" class="google-map" />
   <!-- </div> -->
 </template>
 
 <script>
-//import { query } from '../firebase.js'
+// import { query } from '../firebase.js'
+import { getDonations } from '../firebase.js'
 let google = window.google
 export default {
   name: 'Map',
   data: () => ({
+    userLoc: {
+      lat: -33.9040464,
+      long: 151.2207742
+    },
     markerCoordinates: [
       {
         lat: -33.9040464,
         long: 151.2207742
-      },
-      {
-        lat: -33.9140464,
-        long: 151.2207742
-      },
-      {
-        lat: -33.9140464,
-        long: 151.2307742
-      },
-      
-    ],
+      }],
+    //      {
+    //        lat: -33.9140464,
+    //        long: 151.2207742
+    //      },
+    //      {
+    //        lat: -33.9140464,
+    //        long: 151.2307742
+    //      },
     map: null,
     bounds: null,
     markers: []
   }),
+  computed: {
+    
+  },
   // let results = []
   //   /*let sub = query.onSnapshot((snapshot) => {
   //     snapshot.docChanges().forEach((change) => {
@@ -41,8 +47,8 @@ export default {
   mounted: function () {
     this.bounds = new google.maps.LatLngBounds()
     console.log('bounds:', this.bounds)
-    const ourLat = this.markerCoordinates[0].lat
-    const ourLong = this.markerCoordinates[0].long
+    const ourLat = this.userLoc.lat
+    const ourLong = this.userLoc.long
     const options = {
       zoom: 15,
       center: new google.maps.LatLng(ourLat, ourLong)
@@ -53,14 +59,73 @@ export default {
     console.log(element, options)
     this.map = new google.maps.Map(element, options)
     console.log('map:', this.map)
-    this.markerCoordinates.forEach(coord => {
-      const position = new google.maps.LatLng(coord.lat, coord.long)
-      const marker = new google.maps.Marker({ 
-        position,
-        map: this.map
+    let coord = this.userLoc
+    const position = new google.maps.LatLng(coord.lat, coord.long)
+    const marker = new google.maps.Marker({ 
+      position,
+      map: this.map,
+      title: 'Yeats',
+      animation: google.maps.Animation.BOUNCE
+    })
+    var content = 'Your Current Location'
+    var infowindow = new google.maps.InfoWindow()
+    let map = this.map
+    google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+      map.setCenter(marker.getPosition())
+      return function() {
+        infowindow.setContent(content)
+        infowindow.open(map, marker)
+      }
+    })(marker, content, infowindow))
+    this.markers.push(marker)
+    this.map.fitBounds(this.bounds.extend(position))
+  },
+  beforeMount() {
+    const locations = getDonations().then(res => {
+      console.log(res)
+      res.forEach((obj) => {
+        const position = new google.maps.LatLng(obj.chef.address.lat, obj.chef.address.lng)
+        let marker = ''
+        switch (obj.type) {
+          case 'Food':
+            marker = new google.maps.Marker({
+              position,
+              map: this.map,
+              title: obj.items.join(', '),
+              //icon: '../assets/yeaty_icon_food.png'
+            })
+            break
+          case 'Toys':
+            marker = new google.maps.Marker({
+              position,
+              map: this.map,
+              title: obj.items.join(', '),
+              //icon: '../assets/yeaty_icon_toy.png'
+            })
+            break
+          case 'Clothing':
+            marker = new google.maps.Marker({
+              position,
+              map: this.map,
+              title: obj.items.join(', '),
+              //icon: '../assets/yeaty_icon_shirt.png'
+            })
+            break
+        }
+        let refrigerated = obj.refrigerated ? 'Chilled' : ''
+        var content = '' + obj.chef.name + ': ' + refrigerated + ' ' + obj.type + ' (' + obj.totalWeight + ')<br>Preferred Pickup: ' + obj.pickupTime
+        var infowindow = new google.maps.InfoWindow()
+        let map = this.map
+        google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+          map.setCenter(marker.getPosition())
+          return function() {
+            infowindow.setContent(content)
+            infowindow.open(map, marker)
+          }
+        })(marker, content, infowindow))
+        this.markers.push(marker)
+        this.map.fitBounds(this.bounds.extend(position))
       })
-      this.markers.push(marker)
-      this.map.fitBounds(this.bounds.extend(position))
     })
   }
 }
