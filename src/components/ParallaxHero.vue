@@ -30,8 +30,16 @@
                 src="yeater_food_3.svg"
                 width="256px"
                 style="transform: rotate(40deg)"/>
+              <img class="yeatfood" id="yeatfood2a"
+                src="yeater_food_2a.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
               <img class="yeatfood" id="yeatfood2"
-                src="yeater_food_2.svg"
+                src="yeater_food_2b.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
+              <img class="yeatfood" id="yeatfood2c"
+                src="yeater_food_2c.svg"
                 width="256px"
                 style="transform: rotate(40deg)"/>
               <img class="yeatfood" id="yeatfood1"
@@ -73,6 +81,69 @@
     <v-btn dark @click="onSubmit" class="mr-4">submit</v-btn>
   </form>
       </v-layout>
+
+
+      <v-parallax
+        dark
+        style="height: 1200px"
+        src="heroback.jpg">
+        <v-layout
+          align-center
+          column
+          justify-center
+          style="margin-top: 200px; margin-bottom: 200px;"
+          >
+          <h1 class="display-4 font-weight-thin mb-4">Yeats</h1>
+          <h4 class="display-1 font-weight-thin">What you don't eat, you Yeat.</h4>
+        </v-layout>
+        <v-layout>
+          <v-flex xs6 pa-5 font-weight-light>
+            <h2 class="display-2 my-5 font-weight-light">Just Yeat it!</h2>
+            <p>Ever felt bad for throwing out food? Why chuck it when you could Yeat it? Yeat connects you with local homeless shelters, and we make sure your excess food does not go to waste. Just let us know whenever you have excess food, and one of our awesome Yeaters will come pick it up for you!</p>
+            <p>Interested in helping out? Become a Yeater today!</p>
+          </v-flex>
+          <v-flex xs6>
+            <div id="yeater" style="position: relative" width="400px">
+              <img id="yeatbod" src="yeater_bod.svg" width="400px"/>
+              <img id="yeatarm"
+                src="yeater_arm.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
+              <img class="yeatfood" id="yeatfood3"
+                src="yeater_food_3.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
+              <img class="yeatfood" id="yeatfood2a"
+                src="yeater_food_2a.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
+              <img class="yeatfood" id="yeatfood2"
+                src="yeater_food_2b.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
+              <img class="yeatfood" id="yeatfood2c"
+                src="yeater_food_2c.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
+              <img class="yeatfood" id="yeatfood1"
+                src="yeater_food_1.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
+            </div>
+          </v-flex>
+        </v-layout>
+        <v-layout align-center justify-center>
+          <!-- <v-dialog
+            v-model="ticketModalState"
+            width="500">
+            <template v-slot:activator="{ on }">
+                  <v-btn v-on="on" text dark>Contact</v-btn>
+            </template>
+            <v-card>THICC MEMES</v-card>
+          </v-dialog> -->
+          <p class="display-1">Contact Us</p>
+        </v-layout>
+      </v-parallax>
   </div>
 </template>
 
@@ -113,15 +184,30 @@ export default {
       }
       var food = document.getElementById('yeatfood1')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
+
       if (pageY > 400) {
         angle = mapval(pageY, 400, 750, -50, -40)
       }
       var food = document.getElementById('yeatfood2')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
+
       if (pageY > 400) {
         angle = mapval(pageY, 400, 750, -50, -0)
       }
       var food = document.getElementById('yeatfood3')
+      food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
+
+
+      if (pageY > 400) {
+        angle = mapval(pageY, 400, 750, -50, -20)
+      }
+      var food = document.getElementById('yeatfood2a')
+      food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
+
+      if (pageY > 400) {
+        angle = mapval(pageY, 400, 750, -50, -60)
+      }
+      var food = document.getElementById('yeatfood2c')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
     }
   }
