@@ -1,7 +1,7 @@
 import fb from 'firebase/app'
 import 'firebase/firestore'
 // import 'firebase/storage'
-// import 'firebase/auth'
+import 'firebase/auth'
 
 import { GeoCollectionReference, GeoFirestore, GeoQuery, GeoQuerySnapshot } from 'geofirestore'
 
@@ -24,16 +24,21 @@ export const firestore = firebase.firestore()
 const geofirestore = new GeoFirestore(firestore)
 const donationLocations = geofirestore.collection('donations')
 // export const query = donationLocations.near({ center: new firebase.firestore.GeoPoint(151.79, -33.9851), radius: 2000 })
+export const auth = firebase.auth()
+export const getDonations = async () => {
+  const snapshot = await firestore.collection('donations').get()
+  return snapshot.docs.map(doc => doc.data())
+}
+// const geofirestore = new GeoFirestore(firestore)
+// export const donationLocations = geofirestore.collection('donations')
+// export const query: GeoQuery = geocollection.near({ center: new firebase.firestore.GeoPoint(40.7589, -73.9851), radius: 1000 });
 // Storage refs
 // export const blah = firebase.storage().ref().child('blah')
 
 // Database functions
 export const submitDonation = async (donation) => firestore.collection('donations').add(donation)
-export const getDonations = async () => {
-  const snapshot = await firestore.collection('donations').get()
-  return snapshot.docs.map(doc => doc.data())
-}
-// export const getDonation = async (donation) => firestore.collection('donations').add(donation)
+export const submitEnquiry = async (enquiry) => firestore.collection('enquiry').add(enquiry)
+//export const getDonation = async (donation) => firestore.collection('donations').add(donation)
 
 /** * Example usage: ***/
 // First add this to the imports:

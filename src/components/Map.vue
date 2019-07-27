@@ -33,9 +33,6 @@ export default {
     bounds: null,
     markers: []
   }),
-  computed: {
-    
-  },
   // let results = []
   //   /*let sub = query.onSnapshot((snapshot) => {
   //     snapshot.docChanges().forEach((change) => {
@@ -92,7 +89,7 @@ export default {
               position,
               map: this.map,
               title: obj.items.join(', '),
-              //icon: '../assets/yeaty_icon_food.png'
+              icon: require('../assets/yeaty_icon_food.png?raw=true')
             })
             break
           case 'Toys':
@@ -100,7 +97,7 @@ export default {
               position,
               map: this.map,
               title: obj.items.join(', '),
-              //icon: '../assets/yeaty_icon_toy.png'
+              icon: require('../assets/yeaty_icon_toy.png?raw=true')
             })
             break
           case 'Clothing':
@@ -108,7 +105,7 @@ export default {
               position,
               map: this.map,
               title: obj.items.join(', '),
-              //icon: '../assets/yeaty_icon_shirt.png'
+              icon: require('../assets/yeaty_icon_shirt.png?raw=true')
             })
             break
         }
@@ -124,6 +121,7 @@ export default {
           }
         })(marker, content, infowindow))
         this.markers.push(marker)
+        marker.setMap(this.map)
         this.map.fitBounds(this.bounds.extend(position))
       })
     })

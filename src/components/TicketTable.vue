@@ -1,33 +1,36 @@
 <template>
-  <v-simple-table>
-    <thead>
-      <tr>
-        <th class="text-left">Food types</th>
-        <th class="text-left">Pick-up time (24h)</th>
-        <th class="text-left">Food amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="item in history" :key="item.id">
-        <td>
-          <v-chip 
-            v-for="type in item.foodTypes"
-            :key="type" 
-            class="chip" 
-            filter 
-            outlined>
-            {{ type }}
-          </v-chip>
-        </td>
-        <td>
-          {{ item.pickupTime }}
-        </td>
-        <td>
-          {{ item.foodAmount }}
-        </td>
-      </tr>
-    </tbody>
-  </v-simple-table>
+  <div>
+    <h2>Your past donation history</h2>
+    <v-simple-table>
+      <thead>
+        <tr>
+          <th class="text-left">Food types</th>
+          <th class="text-left">Pick-up time (24h)</th>
+          <th class="text-left">Food amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in history" :key="item.id">
+          <td>
+            <v-chip 
+              v-for="type in item.foodTypes"
+              :key="type" 
+              class="chip" 
+              filter 
+              outlined>
+              {{ type }}
+            </v-chip>
+          </td>
+          <td>
+            {{ item.pickupTime }}
+          </td>
+          <td>
+            {{ item.foodAmount }}
+          </td>
+        </tr>
+      </tbody>
+    </v-simple-table>
+  </div>
 </template>
 
 <script>
@@ -40,7 +43,7 @@ export default {
     history: null
   }),
   beforeMount() {
-    const donationHistory = getDonations().then(res => {
+    getDonations().then(res => {
       this.history = res.filter((curr, i) => {
         for (let k of this.keys) {
           if (!curr.hasOwnProperty(k)) {

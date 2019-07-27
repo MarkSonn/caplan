@@ -5,6 +5,7 @@
     <template v-slot:activator="{ on }">
       <v-btn
         v-on="on"
+        id="makeDonationBtn"
         color="red lighten-2"
         dark>
         Make a donation
@@ -18,15 +19,25 @@
 
       <v-card-text>
         <form>
-          <h2 class="subheader">What type of food do you wish to donate?</h2>
+          <h2 v-if="donationType === null" class="subheader">What would you like to donate?</h2>
+          <v-select
+            v-if="donationType === null"
+            v-model="donationType"
+            :items="donationTypes"
+          ></v-select>
 
+          <h2 class="subheader" v-if="donationType === 'Food'">What type of food do you wish to donate?</h2>
           <v-chip-group
+            v-if="donationType === 'Food'"
             v-model="selected"
             column
             multiple
           >
             <v-chip v-for="type in foodTypes" :key="type" filter outlined>{{ type }}</v-chip>
           </v-chip-group>
+
+          <h2 v-if="donationTyp === 'Clothing'">What type of clothing do you wish to donate?</h2>
+
 
           <h2 class="subheader">When do you want the food to be collected?</h2>
           <v-time-picker
@@ -56,12 +67,15 @@ import { submitDonation } from '@/firebase'
 export default {
   name: 'TicketModal',
   data: () => ({
+    donationType: null,
+    donationTypes: ["Food", "Clothing"],
     picker: null,
     ticketModalState: false,
     selected: [],
     amountSelect: null,
     items: ['0-5kgs', '5-10kgs', '10-20kgs', '20-30kgs', '30kgs+'],
-    foodTypes: ['Meat', 'Fish', 'Chilled Products', 'Bakery', 'Fruit / Veg', 'Dry Stock', 'Other']
+    foodTypes: ['Meat', 'Fish', 'Chilled Products', 'Bakery', 'Fruit / Veg', 'Dry Stock', 'Other'],
+    clothingTypes: []
   }),
   methods: {
     onSubmit: async function() {
@@ -84,5 +98,10 @@ export default {
 .subheader {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+#makeDonationBtn {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 </style>
