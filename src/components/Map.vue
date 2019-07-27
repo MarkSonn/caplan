@@ -10,17 +10,23 @@ export default {
   name: 'google-map',
   props: ['name'],
   data: function () {
+    
+    let lat;
+    let long;
+    // returning lat and long late - wrap a promise around?
+    navigator.geolocation.getCurrentPosition(function(position) {
+      lat = position.coords.latitude
+      long = position.coords.longitude;
+      console.log(lat, long);
+    });
+    
+    //console.log(lat, long);
+
     return {
       mapName: this.name + "-map",
       markerCoordinates: [{
-        latitude: 51.501527,
-        longitude: -0.1921837
-      }, {
-        latitude: 51.505874,
-        longitude: -0.1838486
-      }, {
-        latitude: 51.4998973,
-        longitude: -0.202432
+        latitude: -33.8688,
+        longitude: 151.2093
       }],
       map: null,
       bounds: null,
