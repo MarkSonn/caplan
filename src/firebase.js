@@ -29,8 +29,9 @@ export const getDonations = async () => {
   const snapshot = await firestore.collection('donations').get()
   return snapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
 }
-export const deleteDonation = async (id) => {
-  firestore.collection('donations').doc(id).delete()
+export const setCompleted = async (docid) => {
+  console.log(`aotneuhntaoheunthontahu ${docid}`)
+  firestore.collection('donations').doc(docid).update({status: "completed"})
 }
 // const geofirestore = new GeoFirestore(firestore)
 // export const donationLocations = geofirestore.collection('donations')
