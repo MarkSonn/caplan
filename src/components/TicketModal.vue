@@ -1,102 +1,100 @@
 <template>
-  <v-dialog
-    v-model="ticketModalState"
-    width="500">
-    <template v-slot:activator="{ on }">
-      <v-btn
-        v-on="on"
-        id="makeDonationBtn"
-        color="red lighten-2"
-        dark>
-        Make a donation
-      </v-btn>
-    </template>
+  <v-container fluid>
+    <v-layout>
+      <v-flex xs12 md10 offset-md1>
+        <v-dialog
+          v-model="ticketModalState"
+          width="500">
+          <template v-slot:activator="{ on }">
+            <v-btn
+              v-on="on"
+              id="makeDonationBtn"
+              color="red lighten-2"
+              dark>
+              Make a donation
+            </v-btn>
+          </template>
 
-    <v-card>
-      <v-card-title class="headline primary white--text" primary-title>
-        Submit a donation
-      </v-card-title>
+          <v-card>
+            <v-card-title class="headline primary white--text" primary-title>
+              Submit a donation
+            </v-card-title>
 
-      <v-card-text>
-        <form>
-          <div>
-            <h2 class="subheader">What is your address?</h2>
-            <gmap-autocomplete
-              @place_changed="setPlace" />
-            <br>
-          </div>
+            <v-card-text>
+              <form>
+                <div>
+                  <h2 class="subheader">What is your address?</h2>
+                  <gmap-autocomplete
+                    @place_changed="setPlace" />
+                  <br>
+                </div>
 
-          <h2 class="subheader">What is your name?</h2>
-          <v-text-field
-            v-model="name"
-          />
+                <v-text-field
+                  label="Name"
+                  v-model="name"
+                />
+                <v-text-field
+                  label="Phone Number"
+                  v-model="phone"
+                />
 
-          <h2 class="subheader">What is your phone number?</h2>
-          <v-text-field
-            v-model="phone"
-          />
-          
-          <h2 v-if="donationType === null" class="subheader">What would you like to donate?</h2>
-          <v-select
-            v-if="donationType === null"
-            v-model="donationType"
-            :items="donationTypes"
-          />
+                <v-select
+                  label="Weight (kg)"
+                  v-model="amountSelect"
+                  :items="items"
+                />
+                <v-select
+                  label="Type"
+                  v-model="donationType"
+                  :items="donationTypes"
+                />
 
-          <h2 class="subheader">
-            What type of 
-            <span v-if="donationType === 'Clothing'">clothing</span>
-            <span v-if="donationType === 'Food'">food</span>
-            do you wish to donate?
-          </h2>
-          <v-chip-group
-            v-if="donationType === 'Food'"
-            v-model="selected"
-            column
-            multiple
-          >
-            <v-chip v-for="type in foodTypes" :key="type" filter outlined>{{ type }}</v-chip>
-          </v-chip-group>
-          <v-chip-group
-            v-if="donationType === 'Clothing'"
-            v-model="selected"
-            column
-            multiple
-          >
-            <v-chip v-for="type in clothingTypes" :key="type" filter outlined>{{ type }}</v-chip>
-          </v-chip-group>
+                <h2 class="subheader">
+                  What type of
+                  <span v-if="donationType === 'Clothing'">clothing</span>
+                  <span v-if="donationType === 'Food'">food</span>
+                  do you wish to donate?
+                </h2>
+                <v-chip-group
+                  v-if="donationType === 'Food'"
+                  v-model="selected"
+                  column
+                  multiple
+                >
+                  <v-chip v-for="type in foodTypes" :key="type" filter outlined>{{ type }}</v-chip>
+                </v-chip-group>
+                <v-chip-group
+                  v-if="donationType === 'Clothing'"
+                  v-model="selected"
+                  column
+                  multiple
+                >
+                  <v-chip v-for="type in clothingTypes" :key="type" filter outlined>{{ type }}</v-chip>
+                </v-chip-group>
 
-          <h2 class="subheader">
-            When do you want the 
-            <span v-if="donationType === 'Clothing'">clothing</span>
-            <span v-if="donationType === 'Food'">food</span>
-            to be collected?
-          </h2>
-          <v-time-picker
-            v-model="picker"
-            class="mt-2"
-            :landscape="true"
-            :ampm-in-title="true"
-          />
-
-          <h2 class="subheader">
-            How much 
-            <span v-if="donationType === 'Clothing'">clothing</span>
-            <span v-if="donationType === 'Food'">food</span>
-            are you donating?
-          </h2>
-          <v-select
-            v-model="amountSelect"
-            :items="items"
-          />
-        </form>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer />
-        <v-btn @click="onSubmit" color="primary">submit</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+                <h2 class="subheader">
+                  When do you want the
+                  <span v-if="donationType === 'Clothing'">clothing</span>
+                  <span v-if="donationType === 'Food'">food</span>
+                  to be collected?
+                </h2>
+                <v-time-picker
+                  v-model="picker"
+                  class="mt-2"
+                  :landscape="true"
+                  :ampm-in-title="true"
+                />
+              </form>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer />
+              <v-btn @click="onSubmit" color="primary">submit</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -128,7 +126,7 @@ export default {
         'Chilled Products': true
       }
       const items = this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr])
-      
+
       for (let item of items) {
         if (item in needsRefrigeration) {
           return true
@@ -143,7 +141,7 @@ export default {
       try {
         const response = await submitDonation({
           type: this.donationType,
-          items: this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr]), 
+          items: this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr]),
           pickupTime: this.picker,
           refrigerated: this.isRefrigerated,
           status: 'awaiting',
@@ -194,8 +192,7 @@ export default {
   margin-bottom: 10px;
 }
 #makeDonationBtn {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
+  display: block;
+  margin-left: auto;
 }
 </style>
