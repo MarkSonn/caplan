@@ -2,7 +2,7 @@
   <div v-scroll="rotateArm">
     <v-parallax
         dark
-        style="height: 1000px"
+        style="height: 1200px"
         src="heroback.jpg">
         <v-layout
           align-center
@@ -14,7 +14,7 @@
           <h4 class="headline">First you eat it, then you Yeat it!</h4>
         </v-layout>
         <v-layout>
-          <v-flex xs6>
+          <v-flex xs6 mx-2>
             <h2 class="display-1 my-6 mx-2">Just Yeat it!</h2>
             <p>Ever felt bad for throwing out food? Why chuck it when you could Yeat it? Yeat connects you with local homeless shelters, and we make sure your excess food does not go to waste. Just let us know whenever you have excess food, and one of our awesome Yeaters will come pick it up for you!</p>
             <p>Interested in helping out? Become a Yeater by blah blah blah.</p>
@@ -32,6 +32,16 @@
                 style="transform: rotate(40deg)"/>
             </div>
           </v-flex>
+        </v-layout>
+        <v-layout align-center justify-center>
+          <v-dialog
+            v-model="ticketModalState"
+            width="500">
+            <template v-slot:activator="{ on }">
+                  <v-btn v-on="on" text dark>Contact</v-btn>
+            </template>
+            <v-card>THICC MEMES</v-card>
+          </v-dialog>
         </v-layout>
       </v-parallax>
   </div>
@@ -61,13 +71,13 @@ export default {
       //if (angle < -50) angle = -50;
       //if (angle > 40) angle = 40;
       var angle = mapval(pageY, 0, 400, 40, -50)
-      var tx = mapval(pageY, 0, 400, 20, 0)
+      var tx = mapval(pageY, 0, 400, 150, 0)
       var ty = mapval(pageY, 0, 400, 50, 0)
       arm.style = "transform: translate("+tx+"px, "+ty+"px) rotate(" + angle + "deg)"
       var body = document.getElementById('yeatbod')
       body.style = 'transform: translate(' + tx + 'px, ' + ty + 'px)'
       if (pageY > 400) {
-        tx = mapval(pageY, 400, 750, 0, -100)
+        tx = mapval(pageY, 400, 750, 0, -200)
         ty = 0
         angle = mapval(pageY, 400, 750, -50, -80)
       }
@@ -94,5 +104,6 @@ export default {
     position: absolute;
     top: 0;
     left: 80px;
+    z-index: -10;
   }
 </style>
