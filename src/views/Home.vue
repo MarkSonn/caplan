@@ -1,13 +1,13 @@
 <template>
-  <HelloWorld />
+  <ContactForm />
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld';
+import ContactForm from '../components/ContactForm'
 
 export default {
   components: {
-    HelloWorld,
-  },
-};
+    ContactForm
+  }
+}
 </script>
