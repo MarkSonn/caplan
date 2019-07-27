@@ -14,6 +14,11 @@ export default new Router({
       component: pages.LandingPage
     },
     {
+      path: '/map',
+      name: 'MapPage',
+      component: pages.Map
+    },
+    {
       path: '/shitsfucked',
       name: 'ShitsFucked',
       component: pages.ShitsFucked

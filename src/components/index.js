@@ -4,5 +4,5 @@ export { default as ParallaxHero } from './ParallaxHero.vue'
 export { default as ContactForm } from './ContactForm.vue'
 export { default as TicketModal } from './TicketModal.vue'
 export { default as TicketTable } from './TicketTable.vue'
-
+// export { default as GoogleMap } from './Map.vue'
 export { default as TestComponent } from './TestComponent.vue'
