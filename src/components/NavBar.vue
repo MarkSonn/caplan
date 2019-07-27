@@ -26,7 +26,7 @@
         </v-card-title>
 
         <v-card-text>
-          Lol, nice try you silly goofball!
+          Signing up is not implemented yet.
         </v-card-text>
         <v-card-actions>
           <v-spacer />
