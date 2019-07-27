@@ -1,11 +1,14 @@
 <template>
   <div class="about">
-    <h1>Yes shit is i,ndeed fucked</h1>
+    <TicketModal />
   </div>
 </template>
 
 <script>
+import * as components from '@/components'
+
 export default {
-  name: 'ShitsFucked'
+  name: 'ShitsFucked',
+  components: { ...components }
 }
 </script>
