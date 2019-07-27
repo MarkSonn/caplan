@@ -50,31 +50,30 @@
             </div>
           </v-flex>
         </v-layout>
-        <v-layout align-center justify-center></v-card>
-          </v-dialog>
+        <v-layout align-center justify-center>
           <p class="display-1">Contact Us</p>
         </v-layout>
       </v-parallax>
 
-      <v-layout dark align-center justify-center style="background: #000; padding-bottom: 100px; padding-top: 60px">
-  <form style="width: 60%; margin: auto;">
-    <v-text-field dark
-      v-model="name"
-      label="Name"
-      required />
-    <v-text-field dark
-      v-model="email"
-      label="E-mail"
-      required />
-    <v-textarea dark
-      v-model="message"
-      name="contactMessage"
-      label="Message"
-      required />
+    <v-layout dark align-center justify-center style="background: #000; padding-bottom: 100px; padding-top: 60px">
+      <form style="width: 60%; margin: auto;">
+        <v-text-field v-model="name"
+                      dark
+                      label="Name"
+                      required />
+        <v-text-field v-model="email"
+                      dark
+                      label="E-mail"
+                      required />
+        <v-textarea v-model="message"
+                    dark
+                    name="contactMessage"
+                    label="Message"
+                    required />
 
-    <v-btn dark @click="onSubmit" class="mr-4">submit</v-btn>
-  </form>
-      </v-layout>
+        <v-btn @click="onSubmit" dark class="mr-4">submit</v-btn>
+      </form>
+    </v-layout>
   </div>
 </template>
 

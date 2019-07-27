@@ -40,6 +40,15 @@ export default {
     enquiry: {}
   }),
   methods: {
+    onNameInput: function (e) {
+      this.name = e
+    },
+    onEmailInput: function (e) {
+      this.email = e
+    },
+    onMessageInput: function (e) {
+      this.message = e
+    },
     async onSubmit() {
       try {
         const response = await submitEnquiry(this.enquiry)

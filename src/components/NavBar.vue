@@ -3,14 +3,14 @@
     <v-app-bar
       color="#c22300" dark app>
       <v-toolbar-title class="display-1 font-weight-thin pa-5"><router-link to='/' class="noStyle">Yeats</router-link></v-toolbar-title>
-      <v-btn @click="$router.push(navButton.link)" text v-for="(navButton, i) in navButtons" :key='i'>{{ navButton.name }}</v-btn>
+      <v-btn v-for="(navButton, i) in navButtons" @click="$router.push(navButton.link)" :key='i' text>{{ navButton.name }}</v-btn>
       <v-spacer />
       <span v-if='user'> <small>Logged in as {{ user }}</small></span>
       <v-btn v-if="loggedIn" @click="logOut()" color="#800000" pa-5>
         Log Out<v-icon right>mdi-lock</v-icon>
       </v-btn>
       <template v-else>
-        <v-btn @click="signUpModal = true" color="#600000" class="mx-4">
+        <v-btn @click="signUpModal = true" color="#800000" class="mx-4">
           Sign up<v-icon right>mdi-check</v-icon>
         </v-btn>
         <v-btn @click="googleSignIn()" color="#800000">
