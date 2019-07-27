@@ -72,6 +72,7 @@ export default {
           foodAmount: this.amountSelect 
         })
         console.log('Doc:', response)
+        window.location.reload()
       } catch (error) {
         console.log('ERROR is submitDonation')
       }
