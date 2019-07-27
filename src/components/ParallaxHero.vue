@@ -26,6 +26,10 @@
                 src="yeater_arm.svg"
                 width="256px"
                 style="transform: rotate(40deg)"/>
+              <img id="yeatfood"
+                src="yeater_food.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
             </div>
           </v-flex>
         </v-layout>
@@ -50,14 +54,25 @@ export default {
       }
       var pageY = window.scrollY
       console.log(pageY)
-      var el = document.getElementById('yeatarm')
+      var arm = document.getElementById('yeatarm')
       //var angle = (300 *0.5) - pageY * 0.5
       // map [220,400] to [40,-50]
       // rotation range: 40 to -50
       //if (angle < -50) angle = -50;
       //if (angle > 40) angle = 40;
       var angle = mapval(pageY, 220, 400, 40, -50)
-      el.style = "transform: rotate(" + angle + "deg)"
+      var tx = mapval(pageY, 220, 400, 20, 0)
+      var ty = mapval(pageY, 220, 400, 50, 0)
+      arm.style = "transform: translate("+tx+"px, "+ty+"px) rotate(" + angle + "deg)"
+      var body = document.getElementById('yeatbod')
+      body.style = "transform: translate("+tx+"px, "+ty+"px)"
+      if (pageY > 400) {
+        tx = mapval(pageY, 400, 600, 0, -100)
+        ty = 0
+        angle = mapval(pageY, 400, 600, -50, -80)
+      }
+      var food = document.getElementById('yeatfood')
+      food.style = "transform: translate("+tx+"px, "+ty+"px) rotate(" + angle + "deg)"
     }
   }
 }
@@ -74,6 +89,10 @@ export default {
     position: absolute;
     top: 0;
     left: 80px;
-
+  }
+  #yeatfood {
+    position: absolute;
+    top: 0;
+    left: 80px;
   }
 </style>
