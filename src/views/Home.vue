@@ -1,13 +1,13 @@
 <template>
-  <ContactForm />
+  <LandingPage />
 </template>
 
 <script>
-import ContactForm from '../components/ContactForm'
+import LandingPage from '../components/LandingPage'
 
 export default {
   components: {
-    ContactForm
+    LandingPage
   }
 }
 </script>
