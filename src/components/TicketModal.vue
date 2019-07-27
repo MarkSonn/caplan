@@ -19,38 +19,36 @@
 
       <v-card-text>
         <form>
-          
-
           <div>
             <h2 class="subheader">What is your address?</h2>
-              <gmap-autocomplete
-                @place_changed="setPlace">
-              </gmap-autocomplete>
-            <br/>
+            <gmap-autocomplete
+              @place_changed="setPlace" />
+            <br>
           </div>
 
           <h2 class="subheader">What is your name?</h2>
           <v-text-field
             v-model="name"
-          ></v-text-field>
+          />
 
           <h2 class="subheader">What is your phone number?</h2>
           <v-text-field
             v-model="phone"
-          ></v-text-field>
+          />
           
           <h2 v-if="donationType === null" class="subheader">What would you like to donate?</h2>
           <v-select
             v-if="donationType === null"
             v-model="donationType"
             :items="donationTypes"
-          ></v-select>
+          />
 
           <h2 class="subheader">
             What type of 
             <span v-if="donationType === 'Clothing'">clothing</span>
             <span v-if="donationType === 'Food'">food</span>
-             do you wish to donate?</h2>
+            do you wish to donate?
+          </h2>
           <v-chip-group
             v-if="donationType === 'Food'"
             v-model="selected"
@@ -72,8 +70,8 @@
             When do you want the 
             <span v-if="donationType === 'Clothing'">clothing</span>
             <span v-if="donationType === 'Food'">food</span>
-             to be collected?
-            </h2>
+            to be collected?
+          </h2>
           <v-time-picker
             v-model="picker"
             class="mt-2"
@@ -81,10 +79,12 @@
             :ampm-in-title="true"
           />
 
-          <h2 class="subheader">How much 
+          <h2 class="subheader">
+            How much 
             <span v-if="donationType === 'Clothing'">clothing</span>
             <span v-if="donationType === 'Food'">food</span>
-             are you donating?</h2>
+            are you donating?
+          </h2>
           <v-select
             v-model="amountSelect"
             :items="items"
@@ -111,18 +111,18 @@ export default {
     places: [],
     currentPlace: null,
     donationType: null,
-    donationTypes: ["Food", "Clothing"],
+    donationTypes: ['Food', 'Clothing'],
     picker: null,
     ticketModalState: false,
     selected: [],
     amountSelect: null,
     items: ['0-5kgs', '5-10kgs', '10-20kgs', '20-30kgs', '30kgs+'],
     foodTypes: ['Meat', 'Fish', 'Chilled Products', 'Bakery', 'Fruit / Veg', 'Dry Stock', 'Other'],
-    clothingTypes: ["Coats", "Jackets", "Trousers", "Jeans", "Suits", "Skirts", "T-shirts", "Sweater"]
+    clothingTypes: ['Coats', 'Jackets', 'Trousers', 'Jeans', 'Suits', 'Skirts', 'T-shirts', 'Sweater']
   }),
   computed: {
     isRefrigerated() {
-      return false;
+      return false
     }
   },
   methods: {
@@ -133,7 +133,7 @@ export default {
           items: this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr]), 
           pickupTime: this.picker,
           refrigerated: this.isRefrigerated,
-          status: "awaiting",
+          status: 'awaiting',
           totalWeight: this.amountSelect,
           chef: {
             name: this.name,
@@ -155,21 +155,21 @@ export default {
       }
     },
     setPlace(place) {
-      this.currentPlace = place;
+      this.currentPlace = place
     },
     addMarker() {
       if (this.currentPlace) {
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
-        };
-        this.markers.push({ position: marker });
-        this.places.push(this.currentPlace);
+        }
+        this.markers.push({ position: marker })
+        this.places.push(this.currentPlace)
         this.center = {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
-        };
-        this.currentPlace = null;
+        }
+        this.currentPlace = null
       }
     },
   }
