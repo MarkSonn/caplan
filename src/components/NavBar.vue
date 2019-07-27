@@ -46,8 +46,8 @@ export default {
     loggedIn: false,
     user: '',
     navButtons: [
-      { name: 'Donate', link: '/donations' },
-      { name: 'Map', link: '/map' }
+      { name: 'Donate', link: '/yeaters' },
+      { name: 'Map', link: '/yeatees' }
     ]
   }),
   methods: {
