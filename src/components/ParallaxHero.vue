@@ -1,14 +1,30 @@
 <template>
-  <div>
+  <div v-scroll="rotateArm">
     <v-parallax
         dark
+        height="1000px"
         src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
         <v-layout
           align-center
           column
-          justify-center>
+          justify-center
+          style="margin-top: 200px; margin-bottom: 200px"
+          >
           <h1 class="display-2 font-weight-thin mb-4">Yeats</h1>
           <h4 class="subheading">First you eat it, then you yeat it!</h4>
+        </v-layout>
+        <v-layout>
+          <v-flex xs6>
+            <h2>Just Yeat it!</h2>
+            <p>Ever felt bad for throwing out excess food? Why chuck it when you could Yeat it? Yeat connects you with local homeless shelters, something something. Just let us know whenever you have excess food, and one of our Yeat drivers will come pick it up for you.  </p>
+            <p>Interested in helping out? Something something drive some more.</p>
+          </v-flex>
+          <v-flex xs6>
+            <div id="yeater" style="position: relative" width="400px">
+              <img id="yeatbod" src="yeater_bod.svg" width="400px"/>
+              <img id="yeatarm" src="yeater_arm.svg" width="256"/>
+            </div>
+          </v-flex>
         </v-layout>
       </v-parallax>
   </div>
@@ -22,6 +38,30 @@ export default {
   computed: {
   },
   methods: {
+    rotateArm(e) {
+      console.log(e.pageY)
+      var el = document.getElementById('yeatarm')
+      var angle = (300 *0.5) - e.pageY * 0.5
+      // rotation range: 40 to -50
+      if (angle < -50) angle = -50;
+      if (angle > 40) angle = 40;
+      el.style = "transform: rotate(" + angle + "deg)"
+    }
   }
 }
 </script>
+
+<style scoped>
+  #yeatbod {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+  #yeatarm {
+    position: absolute;
+    top: 0;
+    left: 80px;
+
+  }
+</style>
