@@ -26,7 +26,11 @@
             :items="donationTypes"
           ></v-select>
 
-          <h2 class="subheader" v-if="donationType === 'Food'">What type of food do you wish to donate?</h2>
+          <h2 class="subheader">
+            What type of 
+            <span v-if="donationType === 'Clothing'">clothing</span>
+            <span v-if="donationType === 'Food'">food</span>
+             do you wish to donate?</h2>
           <v-chip-group
             v-if="donationType === 'Food'"
             v-model="selected"
@@ -35,11 +39,21 @@
           >
             <v-chip v-for="type in foodTypes" :key="type" filter outlined>{{ type }}</v-chip>
           </v-chip-group>
+          <v-chip-group
+            v-if="donationType === 'Clothing'"
+            v-model="selected"
+            column
+            multiple
+          >
+            <v-chip v-for="type in clothingTypes" :key="type" filter outlined>{{ type }}</v-chip>
+          </v-chip-group>
 
-          <h2 v-if="donationTyp === 'Clothing'">What type of clothing do you wish to donate?</h2>
-
-
-          <h2 class="subheader">When do you want the food to be collected?</h2>
+          <h2 class="subheader">
+            When do you want the 
+            <span v-if="donationType === 'Clothing'">clothing</span>
+            <span v-if="donationType === 'Food'">food</span>
+             to be collected?
+            </h2>
           <v-time-picker
             v-model="picker"
             class="mt-2"
@@ -47,7 +61,10 @@
             :ampm-in-title="true"
           />
 
-          <h2 class="subheader">How much food are you donating?</h2>
+          <h2 class="subheader">How much 
+            <span v-if="donationType === 'Clothing'">clothing</span>
+            <span v-if="donationType === 'Food'">food</span>
+             are you donating?</h2>
           <v-select
             v-model="amountSelect"
             :items="items"
@@ -75,19 +92,20 @@ export default {
     amountSelect: null,
     items: ['0-5kgs', '5-10kgs', '10-20kgs', '20-30kgs', '30kgs+'],
     foodTypes: ['Meat', 'Fish', 'Chilled Products', 'Bakery', 'Fruit / Veg', 'Dry Stock', 'Other'],
-    clothingTypes: []
+    clothingTypes: ["Coats", "Jackets", "Trousers", "Jeans", "Suits", "Skirts", "T-shirts", "Sweater"]
   }),
   methods: {
     onSubmit: async function() {
       try {
-        const response = await submitDonation({ 
-          foodTypes: this.selected.map(curr => this.foodTypes[curr]), 
+        const response = await submitDonation({
+          donationTypes: this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr]), 
           pickupTime: this.picker,
           foodAmount: this.amountSelect 
         })
         console.log('Doc:', response)
         window.location.reload()
       } catch (error) {
+        console.log(error)
         console.log('ERROR is submitDonation')
       }
     }
