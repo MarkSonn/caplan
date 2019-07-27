@@ -29,27 +29,31 @@
                   <br>
                 </div>
 
-                <h2 class="subheader">What is your name?</h2>
                 <v-text-field
                   v-model="name"
+                  label="Name"
                 />
-
-                <h2 class="subheader">What is your phone number?</h2>
                 <v-text-field
                   v-model="phone"
+                  label="Phone Number"
                 />
-                
-                <h2 v-if="donationType === null" class="subheader">What would you like to donate?</h2>
+
                 <v-select
-                  v-if="donationType === null"
+                  v-model="amountSelect"
+                  label="Weight (kg)"
+                  :items="items"
+                />
+                <v-select
                   v-model="donationType"
+                  label="Type"
                   :items="donationTypes"
                 />
 
                 <h2 class="subheader">
-                  What type of 
+                  What type of
                   <span v-if="donationType === 'Clothing'">clothing</span>
                   <span v-if="donationType === 'Food'">food</span>
+                  <span v-if="donationType === 'Toys'">toys</span>
                   do you wish to donate?
                 </h2>
                 <v-chip-group
@@ -68,11 +72,20 @@
                 >
                   <v-chip v-for="type in clothingTypes" :key="type" filter outlined>{{ type }}</v-chip>
                 </v-chip-group>
+                <v-chip-group
+                  v-if="donationType === 'Toys'"
+                  v-model="selected"
+                  column
+                  multiple
+                >
+                  <v-chip v-for="type in toyTypes" :key="type" filter outlined>{{ type }}</v-chip>
+                </v-chip-group>
 
                 <h2 class="subheader">
-                  When do you want the 
+                  When do you want the
                   <span v-if="donationType === 'Clothing'">clothing</span>
                   <span v-if="donationType === 'Food'">food</span>
+                  <span v-if="donationType === 'Toys'">toys</span>
                   to be collected?
                 </h2>
                 <v-time-picker
@@ -80,17 +93,6 @@
                   class="mt-2"
                   :landscape="true"
                   :ampm-in-title="true"
-                />
-
-                <h2 class="subheader">
-                  How much 
-                  <span v-if="donationType === 'Clothing'">clothing</span>
-                  <span v-if="donationType === 'Food'">food</span>
-                  are you donating?
-                </h2>
-                <v-select
-                  v-model="amountSelect"
-                  :items="items"
                 />
               </form>
             </v-card-text>
@@ -117,14 +119,15 @@ export default {
     places: [],
     currentPlace: null,
     donationType: null,
-    donationTypes: ['Food', 'Clothing'],
+    donationTypes: ['Food', 'Clothing', 'Toys'],
     picker: null,
     ticketModalState: false,
     selected: [],
     amountSelect: null,
     items: ['0-5kgs', '5-10kgs', '10-20kgs', '20-30kgs', '30kgs+'],
     foodTypes: ['Meat', 'Fish', 'Chilled Products', 'Bakery', 'Fruit / Veg', 'Dry Stock', 'Other'],
-    clothingTypes: ['Coats', 'Jackets', 'Trousers', 'Jeans', 'Suits', 'Skirts', 'T-shirts', 'Sweater']
+    clothingTypes: ['Coats', 'Jackets', 'Trousers', 'Jeans', 'Suits', 'Skirts', 'T-shirts', 'Sweater'],
+    toyTypes: ['Dolls', 'Stuffed toys', 'Puzzles']
   }),
   computed: {
     isRefrigerated() {
@@ -133,8 +136,8 @@ export default {
         Fish: true,
         'Chilled Products': true
       }
-      const items = this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr])
-      
+      const items = this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.donationType === 'Toys' ? this.selected.map(curr => this.toyTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr])
+
       for (let item of items) {
         if (item in needsRefrigeration) {
           return true
@@ -149,8 +152,8 @@ export default {
       try {
         const response = await submitDonation({
           type: this.donationType,
-          items: this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr]), 
-          pickupTime: this.picker,
+          items: this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.donationType === 'Toys' ? this.selected.map(curr => this.toyTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr]),
+          pickupTime: `${this.picker}, ${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
           refrigerated: this.isRefrigerated,
           status: 'awaiting',
           totalWeight: this.amountSelect,
@@ -164,7 +167,8 @@ export default {
           },
           driver: {
 
-          }
+          },
+          createdAt: String(new Date().getTime())
         })
         console.log('Doc:', response)
         window.location.reload()

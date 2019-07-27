@@ -54,7 +54,6 @@
             <v-spacer />
             <v-text-field
               v-model="search"
-              append-icon="search"
               label="Search"
               single-line
               hide-details
@@ -78,7 +77,7 @@ import { getDonations } from '@/firebase'
 export default {
   name: 'TicketTable',
   data: () => ({
-    keys: ['type', 'items', 'pickupTime', 'totalWeight', 'chef', 'driver', 'refrigerated', 'status'],
+    keys: ['type', 'items', 'pickupTime', 'totalWeight', 'chef', 'driver', 'refrigerated', 'status', 'createdAt'],
     history: null,
     search: '',
     headers: [
@@ -110,7 +109,7 @@ export default {
   },
   beforeMount() {
     getDonations().then(res => {
-      this.history = res.filter((curr, i) => {
+      const history = res.filter((curr, i) => {
         for (let k of this.keys) {
           if (!curr.hasOwnProperty(k)) {
             return false
@@ -119,6 +118,10 @@ export default {
         }
         return true
       })
+      history.sort((a, b) => (
+        -(a.createdAt - b.createdAt)
+      ))
+      this.history = history
     })
   }
 }

@@ -10,7 +10,7 @@
         Log Out<v-icon right>mdi-lock</v-icon>
       </v-btn>
       <template v-else>
-        <v-btn @click="signUpModal = true" color="#600000" class="mx-4">
+        <v-btn @click="signUpModal = true" color="#800000" class="mx-4">
           Sign up<v-icon right>mdi-check</v-icon>
         </v-btn>
         <v-btn @click="googleSignIn()" color="#800000">
