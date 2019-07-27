@@ -5,22 +5,21 @@
         <v-card>
           <v-card-title>
             Yeat history
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-text-field
               v-model="search"
               label="Search"
               single-line
               hide-details
-            ></v-text-field>
+            />
           </v-card-title>
           <v-data-table
             v-if="this.history !== null"
             :headers="headers"
             :items="transformedHistory"
             :search="search"
-          ></v-data-table>
+          />
         </v-card>
-
       </v-flex>
     </v-layout>
   </v-container>

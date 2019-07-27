@@ -30,22 +30,22 @@
                 </div>
 
                 <v-text-field
-                  label="Name"
                   v-model="name"
+                  label="Name"
                 />
                 <v-text-field
-                  label="Phone Number"
                   v-model="phone"
+                  label="Phone Number"
                 />
 
                 <v-select
-                  label="Weight (kg)"
                   v-model="amountSelect"
+                  label="Weight (kg)"
                   :items="items"
                 />
                 <v-select
-                  label="Type"
                   v-model="donationType"
+                  label="Type"
                   :items="donationTypes"
                 />
 
@@ -153,7 +153,7 @@ export default {
         const response = await submitDonation({
           type: this.donationType,
           items: this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.donationType === 'Toys' ? this.selected.map(curr => this.toyTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr]),
-          pickupTime: this.picker,
+          pickupTime: `${this.picker}, ${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
           refrigerated: this.isRefrigerated,
           status: 'awaiting',
           totalWeight: this.amountSelect,
