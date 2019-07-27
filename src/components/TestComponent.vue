@@ -46,12 +46,12 @@ export default {
     arr: [1, 2, 3, 4]
   }),
   computed: {
-    specialArr() {
+    specialArr () {
       return this.arr.map(x => x ** 2)
     }
   },
   methods: {
-    launchModal() {
+    launchModal () {
       this.otherFunction(true)
     },
     otherFunction (newState) {
@@ -61,13 +61,7 @@ export default {
 }
 </script>
 
-
-
-
-
-
-<!-- 
-
+<!--
 
 <template>
   <div>
@@ -90,6 +84,5 @@ export default {
 <style scoped>
 
 </style>
-
 
 -->
