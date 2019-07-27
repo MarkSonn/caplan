@@ -1,4 +1,4 @@
-<!-- 
+<!--
   Landing page : handle the main page that users first see
   should have hero, link to map, some info, and contact form
   - matt
