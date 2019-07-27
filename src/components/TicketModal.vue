@@ -5,6 +5,7 @@
     <template v-slot:activator="{ on }">
       <v-btn
         v-on="on"
+        id="makeDonationBtn"
         color="red lighten-2"
         dark>
         Make a donation
@@ -84,5 +85,10 @@ export default {
 .subheader {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+#makeDonationBtn {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 </style>

@@ -5,15 +5,15 @@
       dark
       flat>
       <v-toolbar-title>Login form</v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn
+            v-on="on"
             :href="source"
             icon
             large
-            target="_blank"
-            v-on="on">
+            target="_blank">
             <v-icon>mdi-code-tags</v-icon>
           </v-btn>
         </template>
@@ -22,11 +22,11 @@
       <v-tooltip right>
         <template v-slot:activator="{ on }">
           <v-btn
+            v-on="on"
             icon
             large
             href="https://codepen.io/johnjleider/pen/pMvGQO"
-            target="_blank"
-            v-on="on">
+            target="_blank">
             <v-icon>mdi-codepen</v-icon>
           </v-btn>
         </template>
@@ -51,7 +51,7 @@
       </v-form>
     </v-card-text>
     <v-card-actions>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-btn color="primary">Login</v-btn>
     </v-card-actions>
   </v-card>

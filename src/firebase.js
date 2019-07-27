@@ -32,10 +32,7 @@ export const submitDonation = async (donation) => firestore.collection('donation
 export const submitEnquiry = async (enquiry) => firestore.collection('enquiry').add(enquiry)
 // export const getDonation = async (donation) => firestore.collection('donations').add(donation)
 
-
-
-
-/*** Example usage: ***/
+/** * Example usage: ***/
 // First add this to the imports:
 // import { submitDonation } from '@/firebase'
 
