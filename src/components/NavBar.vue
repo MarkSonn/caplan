@@ -4,8 +4,12 @@
       color="#c22300" dark app>
       <v-toolbar-title>Yeats<span v-if='user'> | <small>{{ user }}</small></span></v-toolbar-title>
       <v-spacer />
-      <v-btn v-if="loggedIn" @click="logOut()" color="red">Log Out<v-icon right>mdi-lock</v-icon></v-btn>
-      <v-btn v-else @click="googleSignIn()" color="green">Log In<v-icon right>mdi-lock-open</v-icon></v-btn>
+      <v-btn v-if="loggedIn" @click="logOut()" color="#800000">
+        Log Out<v-icon right>mdi-lock</v-icon>
+      </v-btn>
+      <v-btn v-else @click="googleSignIn()" color="#800000">
+        Log In<v-icon right>mdi-lock-open</v-icon>
+      </v-btn>
     </v-app-bar>
   </div>
 </template>

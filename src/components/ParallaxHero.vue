@@ -17,7 +17,7 @@
           <v-flex xs6>
             <h2 class="display-1 my-6 mx-2">Just Yeat it!</h2>
             <p>Ever felt bad for throwing out food? Why chuck it when you could Yeat it? Yeat connects you with local homeless shelters, and we make sure your excess food does not go to waste. Just let us know whenever you have excess food, and one of our awesome Yeaters will come pick it up for you!</p>
-            <p>Interested in helping out? Become a Yeater by blah blah blah.</p>
+            <p>Interested in helping out? Become a Yeater today!</p>
           </v-flex>
           <v-flex xs6>
             <div id="yeater" style="position: relative" width="400px">
