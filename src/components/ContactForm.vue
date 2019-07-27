@@ -4,23 +4,19 @@
     <v-text-field
       v-model="name"
       label="Name"
-      required>
-      </v-text-field>
+      required />
     <v-text-field
       v-model="email"
       label="E-mail"
-      required>
-    </v-text-field>
+      required />
     <v-textarea
       v-model="message"
       name="contactMessage"
       label="Message"
-      required>
-    </v-textarea>
+      required />
 
-    <v-btn class="mr-4" @click="onSubmit">submit</v-btn>
+    <v-btn @click="onSubmit" class="mr-4">submit</v-btn>
   </form>
-
 </template>
 
 <script>
