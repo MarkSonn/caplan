@@ -18,7 +18,7 @@
 
       <v-card-text>
         <form>
-          <h2 class="title md-2">What type of food do you wish to donate?</h2>
+          <h2 class="subheader">What type of food do you wish to donate?</h2>
 
           <v-chip-group
             v-model="selected"
@@ -28,7 +28,7 @@
             <v-chip v-for="type in foodTypes" :key="type" filter outlined>{{ type }}</v-chip>
           </v-chip-group>
 
-          <h2>When do you want the food to be collected?</h2>
+          <h2 class="subheader">When do you want the food to be collected?</h2>
           <v-time-picker
             v-model="picker"
             class="mt-2"
@@ -36,7 +36,7 @@
             :ampm-in-title="true"
           />
 
-          <h2 class="title md-2">How much food are you donating?</h2>
+          <h2 class="subheader">How much food are you donating?</h2>
           <v-select
             v-model="amountSelect"
             :items="items"
@@ -65,9 +65,6 @@ export default {
   }),
   methods: {
     onSubmit: async function() {
-      // console.log(this.selected.map(curr => this.foodTypes[curr]))
-      // console.log(this.picker)
-      // console.log(this.amountSelect)
       try {
         const response = await submitDonation({ 
           foodTypes: this.selected.map(curr => this.foodTypes[curr]), 
@@ -82,3 +79,9 @@ export default {
   }
 }
 </script>
+<style>
+.subheader {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+</style>

@@ -2,19 +2,27 @@
   <v-simple-table>
     <thead>
       <tr>
-        <th class="text-left">Name</th>
-        <th class="text-left">Calories</th>
+        <th class="text-left">Food types</th>
+        <th class="text-left">Pick-up time (24h)</th>
+        <th class="text-left">Food amount</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="item in history" :key="item.id">
-        <v-chip-group
-          column
-        >
-          <v-chip v-for="type in item.foodTypes" :key="type" filter outlined>{{ type }}</v-chip>
-        </v-chip-group>
-        <!-- <td>{{ item.foodTypes }}</td>
-        <td>{{ item.pickupTime }}</td> -->
+        <td>
+          <v-chip 
+          class="chip"
+          v-for="type in item.foodTypes" 
+          :key="type" 
+          filter 
+          outlined>{{ type }}</v-chip>
+        </td>
+        <td>
+          {{ item.pickupTime }}
+        </td>
+        <td>
+          {{ item.foodAmount }}
+        </td>
       </tr>
     </tbody>
   </v-simple-table>
@@ -49,3 +57,9 @@ export default {
   })
 }
 </script>
+<style scoped>
+  .chip {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+</style>
