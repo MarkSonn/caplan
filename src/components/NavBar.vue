@@ -2,10 +2,18 @@
   <div>
     <v-app-bar
       color="#c22300" dark app>
-      <v-toolbar-title>Yeats<span v-if='user'> | <small>{{ user }}</small></span></v-toolbar-title>
+      <v-toolbar-title class="display-1 font-weight-thin pa-5">Yeats</v-toolbar-title>
+      <v-btn text v-for="navButton in navButtons">
+        {{ navButton.name }}
+      </v-btn>
       <v-spacer />
-      <v-btn v-if="loggedIn" @click="logOut()" color="red">Log Out<v-icon right>mdi-lock</v-icon></v-btn>
-      <v-btn v-else @click="googleSignIn()" color="green">Log In<v-icon right>mdi-lock-open</v-icon></v-btn>
+      <span v-if='user'> <small>Logged in as {{ user }}</small></span>
+      <v-btn v-if="loggedIn" @click="logOut()" color="#800000" pa-5>
+        Log Out<v-icon right>mdi-lock</v-icon>
+      </v-btn>
+      <v-btn v-else @click="googleSignIn()" color="#800000">
+        Log In<v-icon right>mdi-lock-open</v-icon>
+      </v-btn>
     </v-app-bar>
   </div>
 </template>
@@ -16,7 +24,12 @@ export default {
   name: 'NavBar',
   data: () => ({
     loggedIn: false,
-    user: ''
+    user: '',
+    navButtons: [
+      {name: 'Home', target: ''},
+      {name: 'Donate', target: ''},
+      {name: 'Map', target: ''}
+    ]
   }),
   methods: {
     async googleSignIn() {
