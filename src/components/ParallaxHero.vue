@@ -103,45 +103,46 @@ export default {
       // rotation range: 40 to -50
       // if (angle < -50) angle = -50;
       // if (angle > 40) angle = 40;
-      var angle = mapval(pageY, 0, 400, 40, -50)
-      var tx = mapval(pageY, 0, 400, 150, 0)
-      var ty = mapval(pageY, 0, 400, 50, 0)
-      if (pageY > 400) {
-        tx = mapval(pageY, 400, 1200, 0, -100)
-        ty = mapval(pageY, 400, 1200, 0, -33)
+      const yetime = 300
+      var angle = mapval(pageY, 0, yetime, 40, -50)
+      var tx = mapval(pageY, 0, yetime, 150, 0)
+      var ty = mapval(pageY, 0, yetime, 50, 0)
+      if (pageY > yetime) {
+        tx = mapval(pageY, yetime, 1200, 0, -100)
+        ty = mapval(pageY, yetime, 1200, 0, -33)
       }
       arm.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
       var body = document.getElementById('yeatbod')
       body.style = 'transform: translate(' + tx + 'px, ' + ty + 'px)'
-      if (pageY > 400) {
-        tx = mapval(pageY, 400, 750, 0, -200)
+      if (pageY > yetime) {
+        tx = mapval(pageY, yetime, 750, 0, -200)
         ty = 0
-        angle = mapval(pageY, 400, 750, -50, -80)
+        angle = mapval(pageY, yetime, 750, -50, -80)
       }
       var food = document.getElementById('yeatfood1')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
 
-      if (pageY > 400) {
-        angle = mapval(pageY, 400, 750, -50, -40)
+      if (pageY > yetime) {
+        angle = mapval(pageY, yetime, 750, -50, -40)
       }
       var food = document.getElementById('yeatfood2')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
 
-      if (pageY > 400) {
-        angle = mapval(pageY, 400, 750, -50, -0)
+      if (pageY > yetime) {
+        angle = mapval(pageY, yetime, 750, -50, -0)
       }
       var food = document.getElementById('yeatfood3')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
 
 
-      if (pageY > 400) {
-        angle = mapval(pageY, 400, 750, -50, -20)
+      if (pageY > yetime) {
+        angle = mapval(pageY, yetime, 750, -50, -20)
       }
       var food = document.getElementById('yeatfood2a')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
 
-      if (pageY > 400) {
-        angle = mapval(pageY, 400, 750, -50, -60)
+      if (pageY > yetime) {
+        angle = mapval(pageY, yetime, 750, -50, -60)
       }
       var food = document.getElementById('yeatfood2c')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
