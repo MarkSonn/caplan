@@ -106,6 +106,10 @@ export default {
       var angle = mapval(pageY, 0, 400, 40, -50)
       var tx = mapval(pageY, 0, 400, 150, 0)
       var ty = mapval(pageY, 0, 400, 50, 0)
+      if (pageY > 400) {
+        tx = mapval(pageY, 400, 1200, 0, -100)
+        ty = mapval(pageY, 400, 1200, 0, -33)
+      }
       arm.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
       var body = document.getElementById('yeatbod')
       body.style = 'transform: translate(' + tx + 'px, ' + ty + 'px)'
