@@ -6,6 +6,7 @@
       <v-btn
         v-on="on"
         color="red lighten-2"
+        id="makeDonationBtn"
         dark>
         Make a donation
       </v-btn>
@@ -84,5 +85,10 @@ export default {
 .subheader {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+#makeDonationBtn {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 </style>

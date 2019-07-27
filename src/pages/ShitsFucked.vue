@@ -1,7 +1,7 @@
 <template>
   <div class="about">
-    <TicketModal />
     <TicketTable />
+    <TicketModal />
   </div>
 </template>
 
