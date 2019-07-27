@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ParallaxHero />
+    <Map />
+    <!-- <MapStuffHere /> -->
     <!-- <ContactForm /> -->
   </div>
 </template>
@@ -9,7 +10,7 @@
 import * as components from '@/components'
 
 export default {
-  name: 'YeateesPage',
+  name: 'YotersPage',
   components: { ...components }
 }
 </script>

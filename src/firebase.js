@@ -38,8 +38,12 @@ export const getDonations = async () => {
 // Database functions
 export const submitDonation = async (donation) => firestore.collection('donations').add(donation)
 export const submitEnquiry = async (enquiry) => firestore.collection('enquiry').add(enquiry)
-//export const getDonation = async (donation) => firestore.collection('donations').add(donation)
-
+// export const getDonation = async (donation) => firestore.collection('donations').add(donation)
+// export const getDonation = async (donation) => firestore.collection('donations').add(donation)
+/* export const getDonations = async () => {
+  const snapshot = await firestore.collection('donations').get()
+  return snapshot.docs.map(doc => doc.data())
+} */
 /** * Example usage: ***/
 // First add this to the imports:
 // import { submitDonation } from '@/firebase'
