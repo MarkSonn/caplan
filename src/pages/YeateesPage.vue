@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ParallaxHero />
+    <!-- <MapStuffHere /> -->
     <!-- <ContactForm /> -->
   </div>
 </template>
