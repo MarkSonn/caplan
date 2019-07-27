@@ -1,6 +1,6 @@
 <template>
     <div class="app">
-        <div ref="map" style="width: 100%; height: 600px;"></div>
+        <div ref="map"></div>
         <div class="google-map" :id="mapName"></div>
     </div>
 </template>
@@ -49,8 +49,8 @@ export default {
 </script>
 <style scoped>
 .google-map {
-  width: 800px;
-  height: 600px;
+  width: 100vw;
+  height: 85vh;
   margin: 0 auto;
   background: gray;
 }

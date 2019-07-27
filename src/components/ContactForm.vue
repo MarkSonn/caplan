@@ -2,23 +2,20 @@
   <form style="width: 60%; margin: auto;">
     <h2>Contact us</h2>
     <v-text-field
+      v-model="name"
       label="Name"
-      required
-      @input="onNameInput"
-    ></v-text-field>
+      required />
     <v-text-field
+      v-model="email"
       label="E-mail"
-      required
-      @input="onEmailInput"
-    ></v-text-field>
+      required />
     <v-textarea
+      v-model="message"
       name="contactMessage"
       label="Message"
-      @input="onMessageInput"
-      required
-    ></v-textarea>
+      required />
 
-    <v-btn class="mr-4" @click="onSubmit">submit</v-btn>
+    <v-btn @click="onSubmit" class="mr-4">submit</v-btn>
   </form>
 </template>
 
@@ -46,6 +43,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-</style>
