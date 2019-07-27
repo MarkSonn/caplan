@@ -2,13 +2,13 @@
   <div v-scroll="rotateArm">
     <v-parallax
         dark
-        style="height: 1200px"
+        style="height: 1200px; margin-top: -100px"
         src="heroback.jpg">
         <v-layout
           align-center
           column
           justify-center
-          style="margin-top: 200px; margin-bottom: 200px;"
+          style="margin-top: 300px; margin-bottom: 200px;"
           >
           <h1 class="display-4 font-weight-thin mb-4">Yeats</h1>
           <h4 class="display-1 font-weight-thin">What you don't need, you Yeat.</h4>
@@ -57,15 +57,15 @@
 
     <v-layout dark align-center justify-center style="background: #000; padding-bottom: 100px; padding-top: 60px">
       <form style="width: 60%; margin: auto;">
-        <v-text-field v-model="name"
+        <v-text-field v-model="enquiry.name"
                       dark
                       label="Name"
                       required />
-        <v-text-field v-model="email"
+        <v-text-field v-model="enquiry.email"
                       dark
                       label="E-mail"
                       required />
-        <v-textarea v-model="message"
+        <v-textarea v-model="enquiry.message"
                     dark
                     name="contactMessage"
                     label="Message"
@@ -79,9 +79,11 @@
 
 <script>
 import * as components from '@/components'
+import { submitEnquiry } from '@/firebase'
 export default {
   name: 'ParallaxHero',
   data: () => ({
+    enquiry: {}
   }),
   computed: {
   },
@@ -139,6 +141,15 @@ export default {
       }
       var food = document.getElementById('yeatfood2c')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
+    },
+    async onSubmit() {
+      try {
+        const response = await submitEnquiry(this.enquiry)
+        console.log('Enquiry response', response)
+        this.enquiry = {}
+      } catch (error) {
+        console.log('Enquiry error', error)
+      }
     }
   }
 }
