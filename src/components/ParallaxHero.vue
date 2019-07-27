@@ -1,39 +1,39 @@
 <template>
   <div v-scroll="rotateArm">
     <v-parallax
-      dark
-      height="1000px"
-      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
-      <v-layout
-        align-center
-        column
-        justify-center
-        style="margin-top: 200px; margin-bottom: 200px"
-      >
-        <h1 class="display-4 font-weight-thin mb-4">Yeats</h1>
-        <h4 class="headline">First you eat it, then you Yeat it!</h4>
-      </v-layout>
-      <v-layout>
-        <v-flex xs6>
-          <h2 class="display-1 my-6 mx-2">Just Yeat it!</h2>
-          <p>Ever felt bad for throwing out food? Why chuck it when you could Yeat it? Yeat connects you with local homeless shelters, and we make sure your excess food does not go to waste. Just let us know whenever you have excess food, and one of our awesome Yeaters will come pick it up for you!</p>
-          <p>Interested in helping out? Become a Yeater by blah blah blah.</p>
-        </v-flex>
-        <v-flex xs6>
-          <div id="yeater" style="position: relative" width="400px">
-            <img id="yeatbod" src="yeater_bod.svg" width="400px">
-            <img id="yeatarm"
-                 src="yeater_arm.svg"
-                 width="256px"
-                 style="transform: rotate(40deg)">
-            <img id="yeatfood"
-                 src="yeater_food.svg"
-                 width="256px"
-                 style="transform: rotate(40deg)">
-          </div>
-        </v-flex>
-      </v-layout>
-    </v-parallax>
+        dark
+        style="height: 1000px"
+        src="heroback.jpg">
+        <v-layout
+          align-center
+          column
+          justify-center
+          style="margin-top: 200px; margin-bottom: 200px;"
+          >
+          <h1 class="display-4 font-weight-thin mb-4">Yeats</h1>
+          <h4 class="headline">First you eat it, then you Yeat it!</h4>
+        </v-layout>
+        <v-layout>
+          <v-flex xs6>
+            <h2 class="display-1 my-6 mx-2">Just Yeat it!</h2>
+            <p>Ever felt bad for throwing out food? Why chuck it when you could Yeat it? Yeat connects you with local homeless shelters, and we make sure your excess food does not go to waste. Just let us know whenever you have excess food, and one of our awesome Yeaters will come pick it up for you!</p>
+            <p>Interested in helping out? Become a Yeater by blah blah blah.</p>
+          </v-flex>
+          <v-flex xs6>
+            <div id="yeater" style="position: relative" width="400px">
+              <img id="yeatbod" src="yeater_bod.svg" width="400px"/>
+              <img id="yeatarm"
+                src="yeater_arm.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
+              <img id="yeatfood"
+                src="yeater_food.svg"
+                width="256px"
+                style="transform: rotate(40deg)"/>
+            </div>
+          </v-flex>
+        </v-layout>
+      </v-parallax>
   </div>
 </template>
 
@@ -58,18 +58,18 @@ export default {
       // var angle = (300 *0.5) - pageY * 0.5
       // map [220,400] to [40,-50]
       // rotation range: 40 to -50
-      // if (angle < -50) angle = -50;
-      // if (angle > 40) angle = 40;
-      var angle = mapval(pageY, 220, 400, 40, -50)
-      var tx = mapval(pageY, 220, 400, 20, 0)
-      var ty = mapval(pageY, 220, 400, 50, 0)
-      arm.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
+      //if (angle < -50) angle = -50;
+      //if (angle > 40) angle = 40;
+      var angle = mapval(pageY, 0, 400, 40, -50)
+      var tx = mapval(pageY, 0, 400, 20, 0)
+      var ty = mapval(pageY, 0, 400, 50, 0)
+      arm.style = "transform: translate("+tx+"px, "+ty+"px) rotate(" + angle + "deg)"
       var body = document.getElementById('yeatbod')
       body.style = 'transform: translate(' + tx + 'px, ' + ty + 'px)'
       if (pageY > 400) {
-        tx = mapval(pageY, 400, 600, 0, -100)
+        tx = mapval(pageY, 400, 750, 0, -100)
         ty = 0
-        angle = mapval(pageY, 400, 600, -50, -80)
+        angle = mapval(pageY, 400, 750, -50, -80)
       }
       var food = document.getElementById('yeatfood')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
