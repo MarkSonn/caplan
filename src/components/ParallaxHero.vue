@@ -79,6 +79,7 @@
 
 <script>
 import * as components from '@/components'
+import { submitEnquiry } from '@/firebase'
 export default {
   name: 'ParallaxHero',
   data: () => ({
