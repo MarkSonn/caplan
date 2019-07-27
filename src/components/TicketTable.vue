@@ -13,11 +13,13 @@
         <tr v-for="item in history" :key="item.id">
           <td>
             <v-chip 
-            class="chip"
-            v-for="type in item.foodTypes" 
-            :key="type" 
-            filter 
-            outlined>{{ type }}</v-chip>
+              v-for="type in item.foodTypes"
+              :key="type" 
+              class="chip" 
+              filter 
+              outlined>
+              {{ type }}
+            </v-chip>
           </td>
           <td>
             {{ item.pickupTime }}
@@ -37,17 +39,17 @@ import { getDonations } from '@/firebase'
 export default {
   name: 'TicketTable',
   data: () => ({
-    keys: ["foodTypes", "pickupTime", "foodAmount"],
+    keys: ['foodTypes', 'pickupTime', 'foodAmount'],
     history: null
   }),
   beforeMount() {
-    const donationHistory = getDonations().then(res => {
+    getDonations().then(res => {
       this.history = res.filter((curr, i) => {
         for (let k of this.keys) {
           if (!curr.hasOwnProperty(k)) {
             return false
           }
-          curr = {...curr, id: i}
+          curr = { ...curr, id: i }
         }
         return true
       })      

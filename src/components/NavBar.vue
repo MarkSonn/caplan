@@ -30,7 +30,6 @@ export default {
         console.log('lol', this.user)
       } catch (error) {
         console.log('Auth oopsies', error)
-        return
       }
     },
     async logOut () {

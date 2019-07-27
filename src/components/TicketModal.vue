@@ -5,8 +5,8 @@
     <template v-slot:activator="{ on }">
       <v-btn
         v-on="on"
-        color="red lighten-2"
         id="makeDonationBtn"
+        color="red lighten-2"
         dark>
         Make a donation
       </v-btn>
