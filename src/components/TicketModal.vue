@@ -122,6 +122,19 @@ export default {
   }),
   computed: {
     isRefrigerated() {
+      const needsRefrigeration = {
+        Meat: true,
+        Fish: true,
+        'Chilled Products': true
+      }
+      const items = this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr])
+      
+      for (let item of items) {
+        if (item in needsRefrigeration) {
+          return true
+        }
+      }
+
       return false
     }
   },
