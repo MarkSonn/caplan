@@ -4,13 +4,9 @@
     <NavBar />
 
     <v-content>
-<<<<<<< HEAD
       <router-view />
       <!-- <ShitsFucked /> -->
       <!-- TestComponent -->
-=======
-      <LandingPage/>
->>>>>>> origin/master-matt
     </v-content>
   </v-app>
 </template>
