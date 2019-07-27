@@ -29,25 +29,28 @@
                   <br>
                 </div>
 
-                <h2 class="subheader">What is your name?</h2>
                 <v-text-field
+                  label="Name"
                   v-model="name"
                 />
-
-                <h2 class="subheader">What is your phone number?</h2>
                 <v-text-field
+                  label="Phone Number"
                   v-model="phone"
                 />
-                
-                <h2 v-if="donationType === null" class="subheader">What would you like to donate?</h2>
+
                 <v-select
-                  v-if="donationType === null"
+                  label="Weight (kg)"
+                  v-model="amountSelect"
+                  :items="items"
+                />
+                <v-select
+                  label="Type"
                   v-model="donationType"
                   :items="donationTypes"
                 />
 
                 <h2 class="subheader">
-                  What type of 
+                  What type of
                   <span v-if="donationType === 'Clothing'">clothing</span>
                   <span v-if="donationType === 'Food'">food</span>
                   do you wish to donate?
@@ -70,7 +73,7 @@
                 </v-chip-group>
 
                 <h2 class="subheader">
-                  When do you want the 
+                  When do you want the
                   <span v-if="donationType === 'Clothing'">clothing</span>
                   <span v-if="donationType === 'Food'">food</span>
                   to be collected?
@@ -80,17 +83,6 @@
                   class="mt-2"
                   :landscape="true"
                   :ampm-in-title="true"
-                />
-
-                <h2 class="subheader">
-                  How much 
-                  <span v-if="donationType === 'Clothing'">clothing</span>
-                  <span v-if="donationType === 'Food'">food</span>
-                  are you donating?
-                </h2>
-                <v-select
-                  v-model="amountSelect"
-                  :items="items"
                 />
               </form>
             </v-card-text>
@@ -134,7 +126,7 @@ export default {
         'Chilled Products': true
       }
       const items = this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr])
-      
+
       for (let item of items) {
         if (item in needsRefrigeration) {
           return true
@@ -149,7 +141,7 @@ export default {
       try {
         const response = await submitDonation({
           type: this.donationType,
-          items: this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr]), 
+          items: this.donationType === 'Food' ? this.selected.map(curr => this.foodTypes[curr]) : this.selected.map(curr => this.clothingTypes[curr]),
           pickupTime: this.picker,
           refrigerated: this.isRefrigerated,
           status: 'awaiting',
