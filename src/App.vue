@@ -4,7 +4,7 @@
     <NavBar />
 
     <v-content>
-      <ContactForm/>
+        <Map />
     </v-content>
   </v-app>
 </template>

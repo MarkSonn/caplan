@@ -1,3 +1,4 @@
 export { default as HelloWorld } from './HelloWorld.vue'
 export { default as ContactForm } from './ContactForm.vue'
 export { default as NavBar } from './NavBar.vue'
+export { default as Map } from './Map.vue'
