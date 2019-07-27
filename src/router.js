@@ -12,11 +12,11 @@ export default new Router({
       path: '/',
       name: 'LandingPage',
       component: pages.LandingPage
+    },
+    {
+      path: '/shitsfucked',
+      name: 'ShitsFucked',
+      component: pages.ShitsFucked
     }
-    // {
-    //   path: '/shitsfucked',
-    //   name: 'ShitsFucked',
-    //   component: pages.ShitsFucked
-    // }
   ]
 })

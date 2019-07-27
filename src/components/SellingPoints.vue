@@ -1,12 +1,12 @@
 <template>
   <div>
-    TODO: ParallaxHero
+    TODO: SellingPoints
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ParallaxHero',
+  name: 'SellingPoints',
   data: () => ({
   }),
   computed: {
@@ -15,3 +15,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

@@ -4,7 +4,9 @@
     <NavBar />
 
     <v-content>
-      <LandingPage />
+      <router-view />
+      <!-- <ShitsFucked /> -->
+      <!-- TestComponent -->
     </v-content>
   </v-app>
 </template>

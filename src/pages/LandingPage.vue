@@ -1,6 +1,8 @@
 <template>
   <div>
     <ParallaxHero />
+    <SellingPoints />
+    <ContactForm />
   </div>
 </template>
 
