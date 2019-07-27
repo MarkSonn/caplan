@@ -29,10 +29,7 @@ export const auth = firebase.auth()
 
 // Database functions
 export const submitDonation = async (donation) => firestore.collection('donations').add(donation)
-export const getDonations = async () => {
-  const snapshot = await firestore.collection('donations').get()
-  return snapshot.docs.map(doc => doc.data())
-}
+export const submitEnquiry = async (enquiry) => firestore.collection('enquiry').add(enquiry)
 // export const getDonation = async (donation) => firestore.collection('donations').add(donation)
 
 
