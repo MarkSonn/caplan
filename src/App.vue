@@ -3,8 +3,8 @@
     <NavBar />
 
     <v-content>
-      <!-- <router-view /> -->
-      <MapPage />
+      <router-view />
+      <!-- <MapPage /> -->
       <!-- <ShitsFucked /> -->
       <!-- TestComponent -->
     </v-content>
