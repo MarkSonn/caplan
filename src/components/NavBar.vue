@@ -7,8 +7,8 @@
         {{ navButton.name }}
       </v-btn>
       <v-spacer />
-      <span v-if='user'> | <small>{{ user }}</small></span>
-      <v-btn v-if="loggedIn" @click="logOut()" color="#800000">
+      <span v-if='user'> <small>Logged in as {{ user }}</small></span>
+      <v-btn v-if="loggedIn" @click="logOut()" color="#800000" pa-5>
         Log Out<v-icon right>mdi-lock</v-icon>
       </v-btn>
       <v-btn v-else @click="googleSignIn()" color="#800000">

@@ -11,11 +11,11 @@
           style="margin-top: 200px; margin-bottom: 200px;"
           >
           <h1 class="display-4 font-weight-thin mb-4">Yeats</h1>
-          <h4 class="headline">First you eat it, then you Yeat it!</h4>
+          <h4 class="display-1 font-weight-light">What you don't eat, you Yeat!</h4>
         </v-layout>
         <v-layout>
-          <v-flex xs6 pa-5>
-            <h2 class="display-1 my-6">Just Yeat it!</h2>
+          <v-flex xs6 pa-5 font-weight-light>
+            <h2 class="display-2 my-5 font-weight-light">Just Yeat it!</h2>
             <p>Ever felt bad for throwing out food? Why chuck it when you could Yeat it? Yeat connects you with local homeless shelters, and we make sure your excess food does not go to waste. Just let us know whenever you have excess food, and one of our awesome Yeaters will come pick it up for you!</p>
             <p>Interested in helping out? Become a Yeater today!</p>
           </v-flex>
