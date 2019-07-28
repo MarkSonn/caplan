@@ -1,58 +1,58 @@
 <template>
   <div v-scroll="rotateArm">
     <v-parallax
-        dark
-        style="height: 1200px; margin-top: -100px"
-        src="heroback.jpg">
-        <v-layout
-          align-center
-          column
-          justify-center
-          style="margin-top: 300px; margin-bottom: 200px;"
-          >
-          <h1 class="display-4 font-weight-thin mb-4">Yeats</h1>
-          <h4 class="display-1 font-weight-thin">What you don't need, you Yeat.</h4>
-        </v-layout>
-        <v-layout>
-          <v-flex xs6 pa-5 font-weight-light>
-            <h2 class="display-2 my-5 font-weight-light">Just Yeat it!</h2>
-            <p>
-              Leftovers from last night's family dinner? Clothes in your wardrobe you never wear? Old toys just lying and collecting dust? Why chuck 'em when you could Yeat 'em? Yeats makes donating food, clothes and toys simple and convenient. Your donations will go to homeless shelters, charity op-shops and other people who can benefit most from your stuff. Just let us know, and one of our awesome volunteers will come to you and pick them up!
-            </p>
-          </v-flex>
-          <v-flex xs6>
-            <div id="yeater" style="position: relative" width="400px">
-              <img id="yeatbod" src="yeater_bod.svg" width="400px"/>
-              <img id="yeatarm"
-                src="yeater_arm.svg"
-                width="256px"
-                style="transform: rotate(40deg)"/>
-              <img class="yeatfood" id="yeatfood3"
-                src="yeater_food_3.svg"
-                width="256px"
-                style="transform: rotate(40deg)"/>
-              <img class="yeatfood" id="yeatfood2a"
-                src="yeater_food_2a.svg"
-                width="256px"
-                style="transform: rotate(40deg)"/>
-              <img class="yeatfood" id="yeatfood2"
-                src="yeater_food_2b.svg"
-                width="256px"
-                style="transform: rotate(40deg)"/>
-              <img class="yeatfood" id="yeatfood2c"
-                src="yeater_food_2c.svg"
-                width="256px"
-                style="transform: rotate(40deg)"/>
-              <img class="yeatfood" id="yeatfood1"
-                src="yeater_food_1.svg"
-                width="256px"
-                style="transform: rotate(40deg)"/>
-            </div>
-          </v-flex>
-        </v-layout>
-      </v-parallax>
+      dark
+      style="height: 1200px; margin-top: -100px"
+      src="heroback.jpg">
+      <v-layout
+        align-center
+        column
+        justify-center
+        style="margin-top: 300px; margin-bottom: 200px;"
+      >
+        <h1 class="display-4 font-weight-thin mb-4">Yeats</h1>
+        <h4 class="display-1 font-weight-thin">What you don't need, you Yeat.</h4>
+      </v-layout>
+      <v-layout>
+        <v-flex xs6 pa-5 font-weight-light>
+          <h2 class="display-2 my-5 font-weight-light">Just Yeat it!</h2>
+          <p>
+            Leftovers from last night's family dinner? Clothes in your wardrobe you never wear? Old toys just lying and collecting dust? Why chuck 'em when you could Yeat 'em? Yeats makes donating food, clothes and toys simple and convenient. Your donations will go to homeless shelters, charity op-shops and other people who can benefit most from your stuff. Just let us know, and one of our awesome volunteers will come to you and pick them up!
+          </p>
+        </v-flex>
+        <v-flex xs6>
+          <div id="yeater" style="position: relative" width="400px">
+            <img id="yeatbod" src="yeater_bod.svg" width="400px">
+            <img id="yeatarm"
+                 src="yeater_arm.svg"
+                 width="256px"
+                 style="transform: rotate(40deg)">
+            <img id="yeatfood3" class="yeatfood"
+                 src="yeater_food_3.svg"
+                 width="256px"
+                 style="transform: rotate(40deg)">
+            <img id="yeatfood2a" class="yeatfood"
+                 src="yeater_food_2a.svg"
+                 width="256px"
+                 style="transform: rotate(40deg)">
+            <img id="yeatfood2" class="yeatfood"
+                 src="yeater_food_2b.svg"
+                 width="256px"
+                 style="transform: rotate(40deg)">
+            <img id="yeatfood2c" class="yeatfood"
+                 src="yeater_food_2c.svg"
+                 width="256px"
+                 style="transform: rotate(40deg)">
+            <img id="yeatfood1" class="yeatfood"
+                 src="yeater_food_1.svg"
+                 width="256px"
+                 style="transform: rotate(40deg)">
+          </div>
+        </v-flex>
+      </v-layout>
+    </v-parallax>
     <v-layout dark align-center column justify-center style="background: #000; padding-bottom: 100px; padding-top: 60px">
-          <p class="display-1" style="color: white">Contact Us</p>
+      <p class="display-1" style="color: white">Contact Us</p>
       <form style="width: 60%; margin: auto;">
         <v-text-field v-model="enquiry.name"
                       dark
@@ -129,7 +129,6 @@ export default {
       }
       var food = document.getElementById('yeatfood3')
       food.style = 'transform: translate(' + tx + 'px, ' + ty + 'px) rotate(' + angle + 'deg)'
-
 
       if (pageY > yetime) {
         angle = mapval(pageY, yetime, 750, -50, -20)

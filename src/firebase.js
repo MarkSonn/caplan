@@ -27,11 +27,11 @@ const donationLocations = geofirestore.collection('donations')
 export const auth = firebase.auth()
 export const getDonations = async () => {
   const snapshot = await firestore.collection('donations').get()
-  return snapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
+  return snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
 }
 export const setCompleted = async (docid) => {
-  console.log(`aotneuhntaoheunthontahu ${docid}`)
-  firestore.collection('donations').doc(docid).update({status: "completed"})
+  //console.log(`aotneuhntaoheunthontahu ${docid}`)
+  firestore.collection('donations').doc(docid).update({ status: 'completed' })
 }
 // const geofirestore = new GeoFirestore(firestore)
 // export const donationLocations = geofirestore.collection('donations')
